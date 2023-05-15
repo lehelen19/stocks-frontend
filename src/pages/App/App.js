@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import HomePage from '../HomePage/HomePage';
 import AuthPage from '../AuthPage/AuthPage';
+import StockDetailPage from '../StockDetailPage/StockDetailPage';
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -14,6 +15,7 @@ function App() {
           {/* <NavBar user={user} setUser={setUser} /> */}
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/stocks/:symbol" element={<StockDetailPage />} />
           </Routes>
         </>
       ) : (
