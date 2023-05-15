@@ -1,11 +1,16 @@
 import React from 'react';
 import SearchBar from './SearchBar/SearchBar';
 
-const Sidebar = ({ setSearch }) => {
+const Sidebar = ({ setSearch, search, error, handleSubmit }) => {
   return (
     <div>
       <div>Side Bar</div>
-      <SearchBar setSearch={setSearch} />
+      <SearchBar
+        search={search}
+        setSearch={setSearch}
+        error={error}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };

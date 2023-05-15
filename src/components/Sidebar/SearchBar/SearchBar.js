@@ -1,21 +1,6 @@
-import { useState } from 'react';
-import { getStockDetail } from '../../../utilities/users-service';
-
-const SearchBar = () => {
-  const [stock, setStock] = useState('');
-  const [error, setError] = useState('');
-
+const SearchBar = ({ handleSubmit, search, setSearch, error }) => {
   const handleChange = (e) => {
-    setStock(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const foundStock = await getStockDetail(stock);
-    } catch {
-      setError('Search for stock failed.');
-    }
+    setSearch(e.target.value);
   };
 
   return (
@@ -25,7 +10,7 @@ const SearchBar = () => {
           <input
             type="text"
             placeholder="Search for ticker symbol..."
-            value={stock}
+            value={search}
             onChange={handleChange}
             required
           />
