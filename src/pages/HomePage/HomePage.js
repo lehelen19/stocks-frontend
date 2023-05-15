@@ -3,7 +3,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import { getStockDetail } from '../../utilities/stocks-service';
 import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import StockDetailPage from '../StockDetailPage/StockDetailPage';
+import StockDetail from '../../components/StockDetail/StockDetail';
 
 const HomePage = () => {
   // Need info to get request
@@ -32,7 +32,7 @@ const HomePage = () => {
         handleSubmit={handleSubmit}
         error={error}
       />
-      {stockDetails ? <StockDetailPage quote={stockDetails} /> : null}
+      {stockDetails ? <StockDetail quote={stockDetails} /> : null}
     </div>
   );
 };

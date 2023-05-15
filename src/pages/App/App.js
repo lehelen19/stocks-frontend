@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import HomePage from '../HomePage/HomePage';
 import AuthPage from '../AuthPage/AuthPage';
-import StockDetailPage from '../StockDetailPage/StockDetailPage';
+import StockDetailPage from '../../components/StockDetail/StockDetail';
 
 function App() {
   const [user, setUser] = useState(getUser());
