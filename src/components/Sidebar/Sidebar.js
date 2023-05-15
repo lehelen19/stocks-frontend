@@ -4,7 +4,7 @@ import SearchBar from './SearchBar/SearchBar';
 const Sidebar = () => {
   return (
     <div>
-      Sidebar
+      <div>Side Bar</div>
       <SearchBar />
     </div>
   );
