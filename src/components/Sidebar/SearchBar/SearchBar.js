@@ -1,13 +1,22 @@
 import { useState } from 'react';
+import { getStockDetail } from '../../../utilities/users-service';
 
 const SearchBar = () => {
   const [stock, setStock] = useState('');
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setStock(e.target.value);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const foundStock = await getStockDetail(stock);
+    } catch {
+      setError('Search for stock failed.');
+    }
+  };
 
   return (
     <>
@@ -23,6 +32,7 @@ const SearchBar = () => {
         </label>
         <button type="submit">Search</button>
       </form>
+      <p className="error-message">&nbsp;{error}</p>
     </>
   );
 };
