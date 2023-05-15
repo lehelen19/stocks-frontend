@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import './HomePage.css';
-import SearchBar from '../../components/Sidebar/SearchBar/SearchBar';
 
 const HomePage = () => {
   const [search, setSearch] = useState('');
@@ -11,7 +10,6 @@ const HomePage = () => {
     <div>
       HomePage
       <Sidebar />
-      <SearchBar />
     </div>
   );
 };
