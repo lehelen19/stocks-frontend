@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { getStockDetail } from '../../utilities/users-service';
+import { getStockDetail } from '../../utilities/stocks-service';
 import './HomePage.css';
 
 const HomePage = () => {
