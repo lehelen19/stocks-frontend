@@ -1,9 +1,25 @@
-import React from 'react'
+const SearchBar = ({ handleSubmit, search, setSearch, error }) => {
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
 
-const SearchBar = () => {
-    return (
-        <div>SearchBar</div>
-    )
-}
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <label>
+          <input
+            type="text"
+            placeholder="Search for ticker symbol..."
+            value={search}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <button type="submit">Search</button>
+      </form>
+      <p className="error-message">&nbsp;{error}</p>
+    </>
+  );
+};
 
-export default SearchBar
+export default SearchBar;
