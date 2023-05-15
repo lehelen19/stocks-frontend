@@ -40,8 +40,3 @@ export function checkToken() {
 
     .then((dateStr) => new Date(dateStr));
 }
-
-export async function getStockDetail(stock) {
-  const stockDetail = await userAPI.getStockDetail();
-  return stockDetail;
-}
