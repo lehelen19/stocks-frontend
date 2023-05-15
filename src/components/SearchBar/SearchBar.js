@@ -5,6 +5,7 @@ const SearchBar = ({ handleSubmit, search, setSearch, error }) => {
 
   return (
     <>
+      <p>Search Bar</p>
       <form onSubmit={handleSubmit}>
         <label>
           <input
