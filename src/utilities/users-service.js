@@ -41,6 +41,7 @@ export function checkToken() {
     .then((dateStr) => new Date(dateStr));
 }
 
-export function getStockDetail() {
-  console.log('Hit stockDetail');
+export async function getStockDetail(stock) {
+  const stockDetail = await userAPI.getStockDetail();
+  return stockDetail;
 }
