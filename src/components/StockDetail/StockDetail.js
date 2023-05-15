@@ -1,4 +1,4 @@
-const StockDetailPage = ({ quote }) => {
+const StockDetail = ({ quote }) => {
   const details = quote['Global Quote'];
   return (
     <>
@@ -11,4 +11,4 @@ const StockDetailPage = ({ quote }) => {
   );
 };
 
-export default StockDetailPage;
+export default StockDetail;
