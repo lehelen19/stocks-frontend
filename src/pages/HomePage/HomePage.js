@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <div>
       HomePage
-      <Sidebar />
+      <Sidebar setSearch={setSearch} />
     </div>
   );
 };
