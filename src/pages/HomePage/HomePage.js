@@ -14,6 +14,7 @@ const HomePage = () => {
     try {
       const foundStock = await getStockDetail(search);
       setStockDetails(foundStock);
+      setSearch('');
     } catch {
       setError('Search for stock failed.');
     }
