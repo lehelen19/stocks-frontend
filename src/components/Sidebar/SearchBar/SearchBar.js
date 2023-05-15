@@ -5,18 +5,22 @@ const SearchBar = () => {
 
   const handleChange = () => {};
 
+  const handleSubmit = () => {};
+
   return (
     <>
-      <label>
-        <input
-          type="text"
-          placeholder="Search for stock..."
-          value={stock}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <button type="submit">Search</button>
+      <form onSubmit={handleSubmit}>
+        <label>
+          <input
+            type="text"
+            placeholder="Search for stock..."
+            value={stock}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <button type="submit">Search</button>
+      </form>
     </>
   );
 };
