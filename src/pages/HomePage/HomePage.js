@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { getStockDetail } from '../../utilities/stocks-service';
 import './HomePage.css';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 const HomePage = () => {
   // Need info to get request
@@ -23,7 +24,8 @@ const HomePage = () => {
   return (
     <div>
       HomePage
-      <Sidebar
+      <Sidebar />
+      <SearchBar
         search={search}
         setSearch={setSearch}
         handleSubmit={handleSubmit}
