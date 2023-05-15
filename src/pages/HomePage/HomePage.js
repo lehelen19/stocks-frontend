@@ -28,7 +28,7 @@ const HomePage = () => {
         handleSubmit={handleSubmit}
         error={error}
       />
-      {stockDetails}
+      {stockDetails ? JSON.stringify(stockDetails) : null}
     </div>
   );
 };
