@@ -3,7 +3,8 @@ import { signUp } from '../../utilities/users-service';
 
 export default class SignUpForm extends Component {
     state = {
-        name: '',
+        
+        username: '',
         email: '',
         password: '',
         confirm: '',
@@ -39,11 +40,11 @@ export default class SignUpForm extends Component {
             <div>
                 <div className="form-container">
                     <form autoComplete="off" onSubmit={this.handleSubmit}>
-                        <label>Name</label>
+                        <label>Username</label>
                         <input 
                             type="text" 
-                            name="name" 
-                            value={this.state.name}
+                            name="username" 
+                            value={this.state.username}
                             onChange={this.handleChange}
                             required 
                         />
