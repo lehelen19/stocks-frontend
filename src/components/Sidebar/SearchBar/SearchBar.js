@@ -3,7 +3,9 @@ import { useState } from 'react';
 const SearchBar = () => {
   const [stock, setStock] = useState('');
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    setStock(e.target.value);
+  };
 
   const handleSubmit = () => {};
 
