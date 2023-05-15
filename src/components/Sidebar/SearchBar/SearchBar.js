@@ -15,7 +15,7 @@ const SearchBar = () => {
         <label>
           <input
             type="text"
-            placeholder="Search for stock..."
+            placeholder="Search for ticker symbol..."
             value={stock}
             onChange={handleChange}
             required
