@@ -6,6 +6,7 @@ const StockDetailPage = ({ quote }) => {
       <div>Price: ${details['02. open']}</div>
       <div>Volume: {details['06. volume']}</div>
       <div>Change Percent: {details['10. change percent']}</div>
+      <button>Add to watchlist</button>
     </>
   );
 };
