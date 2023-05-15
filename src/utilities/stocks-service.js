@@ -1,6 +1,6 @@
-async function getStockDetail(stock) {
-  const stockDetail = await getStockDetail(stock);
+import * as stocksAPI from './stocks-api';
+
+export async function getStockDetail(stock) {
+  const stockDetail = await stocksAPI.getStockDetail(stock);
   return stockDetail;
 }
-
-module.exports = { getStockDetail };
