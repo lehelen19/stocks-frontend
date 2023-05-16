@@ -17,4 +17,4 @@ function Sidebar({user}) {
     );
 }
 
-export default Sidebar;
+export default Sidebar
