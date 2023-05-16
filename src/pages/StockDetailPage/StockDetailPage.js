@@ -36,7 +36,16 @@ const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
         <div>Price: ${stockDetails['02. open']}</div>
         <div>Volume: {stockDetails['06. volume']}</div>
         <div>Change Percent: {stockDetails['10. change percent']}</div>
-        <button>Add to watchlist</button> */}
+         */}
+        <form>
+          <label>
+            <select>
+              <option>Watchlist 1</option>
+              <option defaultValue={2}>Watchlist 2</option>
+            </select>
+          </label>
+          <button>Add to watchlist</button>
+        </form>
       </>
     );
   };
