@@ -6,7 +6,7 @@ import { getWatchlists } from '../../utilities/watchlists-service';
 
 function Sidebar({ user }) {
   const [watchlists, setWatchlists] = useState(null);
-  const [newWatchlist, setNewWatchlist] = useState(null);
+  const [newWatchlist, setNewWatchlist] = useState('');
   const [showInput, setShowInput] = useState(false);
 
   const fetchWatchlists = async () => {
@@ -26,14 +26,28 @@ function Sidebar({ user }) {
     setShowInput(!showInput);
   };
 
+  const handleChange = (e) => {
+    setNewWatchlist(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('submitted!');
+  };
+
   return (
     <div className="user-sidebar">
       <h3>Welcome, {user.username}!</h3>
 
       <button onClick={handleClick}>Create new watchlist</button>
       {showInput && (
-        <form>
-          <input placeholder="New watchlist name..." />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={newWatchlist}
+            onChange={handleChange}
+            placeholder="New watchlist name..."
+          />
           <button>Submit</button>
         </form>
       )}
