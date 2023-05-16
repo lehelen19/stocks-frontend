@@ -2,20 +2,49 @@ import './App.css';
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
+import { useNavigate } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import AuthPage from '../AuthPage/AuthPage';
-import StockDetailPage from '../../components/StockDetail/StockDetail';
+import StockDetailPage from '../StockDetailPage/StockDetailPage';
 
 function App() {
   const [user, setUser] = useState(getUser());
+  const [search, setSearch] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearch('');
+    navigate(`/stocks/${search}`);
+  };
+
   return (
     <main className="App">
       {user ? (
         <>
           {/* <NavBar user={user} setUser={setUser} /> */}
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/stocks/:symbol" element={<StockDetailPage />} />
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  search={search}
+                  setSearch={setSearch}
+                  handleSubmit={handleSubmit}
+                />
+              }
+            />
+            <Route
+              path="/stocks/:symbol"
+              element={
+                <StockDetailPage
+                  search={search}
+                  setSearch={setSearch}
+                  handleSubmit={handleSubmit}
+                />
+              }
+            />
           </Routes>
         </>
       ) : (

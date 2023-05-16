@@ -18,7 +18,6 @@ const SearchBar = ({ handleSubmit, search, setSearch, error }) => {
         </label>
         <button type="submit">Search</button>
       </form>
-      <p className="error-message">&nbsp;{error}</p>
     </>
   );
 };
