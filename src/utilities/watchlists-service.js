@@ -5,12 +5,11 @@ export async function getWatchlists() {
     return watchlists;
 }
 
-// export async function deleteWatchlist() {
-//     const deleteWL = await watchlistsAPI.deleteWatchlist()
-//     return deleteWL;
-// }
+export async function deleteWatchlist(_id) {
+    const eraseWatchlist = await watchlistsAPI.deleteWatchlist(_id);
+}
 
 export async function createWatchlist(watchlistName) {
-  const newWatchlist = await watchlistsAPI.createWatchlist(watchlistName);
-  return newWatchlist;
+    const newWatchlist = await watchlistsAPI.createWatchlist(watchlistName);
+    return newWatchlist;
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
     getWatchlists,
     createWatchlist,
+    deleteWatchlist
 } from '../../utilities/watchlists-service';
 import { logOut } from '../../utilities/users-service';
 import { Link } from 'react-router-dom';
@@ -47,6 +48,14 @@ function Sidebar({ user, setUser }) {
             setError('New watchlist creation failed - try again');
         }
     };
+    const handleDeleteWatchlist = async (_id) => {
+        try {
+            await deleteWatchlist(_id)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="user-sidebar">
             <h1>Welcome, {user.username}!</h1>
@@ -69,9 +78,12 @@ function Sidebar({ user, setUser }) {
                     watchlists.map((watchlist) => {
                         const { name, _id } = watchlist;
                         return (
-                            <Link to={`/watchlists/${_id}`} key={_id}>
-                                <p>{name}</p>
-                            </Link>
+                            <div>
+                                <Link to={`/watchlists/${_id}`} key={_id}>
+                                    <p>{name}</p>
+                                </Link>
+                                <button onClick={() => (handleDeleteWatchlist(_id))} >X</button>
+                            </div>
                         );
                     })}
             </section>
