@@ -38,8 +38,6 @@ function Sidebar({ user }) {
         </form>
       )}
       <p>Watchlists: {watchlists}</p>
-      {/* <CreateWatchlistButton onCreate={create} />  */}
-      {/* <WatchlistList watchlists={watchlists} /> */}
     </div>
   );
 }
