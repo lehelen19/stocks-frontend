@@ -9,3 +9,8 @@ export async function createWatchlist(watchlistName) {
   const newWatchlist = await watchlistsAPI.createWatchlist(watchlistName);
   return newWatchlist;
 }
+
+export async function getWatchlistDetails(id) {
+  const watchlistDetails = await watchlistsAPI.getWatchlistDetails(id);
+  return watchlistDetails;
+}

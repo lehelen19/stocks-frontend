@@ -11,7 +11,7 @@ const WatchlistDetailPage = ({ user, search, setSearch, handleSubmit }) => {
 
   const fetchWatchlistDetails = async () => {
     try {
-      const foundWatchlist = await getWatchlistDetail(id);
+      const foundWatchlist = await getWatchlistDetails(id);
       setWatchlistDetails(foundWatchlist);
     } catch (error) {
       setError(error);
