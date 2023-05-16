@@ -21,3 +21,7 @@ export function getWatchlistDetails(id) {
 export function updateWatchlistName(id, newName) {
     return sendRequest(`${BASE_URL}/${id}`, 'POST', { name: newName });
 }
+
+export function addStock(id, symbol) {
+  return sendRequest(`${BASE_URL}/${id}/stocks`, 'POST', { stock: symbol });
+}

@@ -40,23 +40,24 @@ function Sidebar({ user, setUser }) {
         setWatchlistName(e.target.value);
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await createWatchlist(watchlistName);
-            fetchWatchlists();
-        } catch (err) {
-            setError('New watchlist creation failed - try again');
-        }
-    };
-    const handleDeleteWatchlist = async (_id) => {
-        try {
-            await deleteWatchlist(_id);
-            fetchWatchlists();
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await createWatchlist(watchlistName);
+      setWatchlistName('');
+      fetchWatchlists();
+    } catch (err) {
+      setError('New watchlist creation failed - try again');
+    }
+  };
+  const handleDeleteWatchlist = async (_id) => {
+    try {
+      await deleteWatchlist(_id);
+      fetchWatchlists();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
     const handleUpdateWatchlistName = async (id, newName) => {
         try {

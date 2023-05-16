@@ -24,3 +24,8 @@ export async function updateWatchlistName(id, newName) {
     const watchlistNameUpdate = await watchlistsAPI.updateWatchlistName(id, newName);
     return watchlistNameUpdate;
 }
+
+export async function addStock(id, symbol) {
+  const updatedWatchlist = await watchlistsAPI.addStock(id, symbol);
+  return updatedWatchlist;
+}
