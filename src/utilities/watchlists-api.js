@@ -11,5 +11,5 @@ export function createWatchlist(watchlistName) {
 }
 
 export function getWatchlistDetails(id) {
-  return sendRequest(`BASE_URL/${id}`);
+  return sendRequest(`${BASE_URL}/${id}`);
 }

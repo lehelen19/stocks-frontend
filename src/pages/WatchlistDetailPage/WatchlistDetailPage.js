@@ -19,6 +19,10 @@ const WatchlistDetailPage = ({ user, search, setSearch, handleSubmit }) => {
     }
   };
 
+  useEffect(() => {
+    fetchWatchlistDetails();
+  }, []);
+
   return (
     <>
       <h3>Watchlist Details</h3>
