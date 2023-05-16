@@ -1,12 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getStockDetail } from '../../utilities/stocks-service';
+import { getWatchlists } from '../../utilities/watchlists-service';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
-const StockDetailPage = ({ search, setSearch, handleSubmit }) => {
+const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
   const [stockDetails, setStockDetails] = useState(null);
+  const [watchlists, setWatchlists] = useState(null);
   const [error, setError] = useState('');
+
+  const fetchWatchlists = async () => {
+    try {
+      const foundWatchlists = await getWatchlists();
+      setWatchlists(foundWatchlists);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const { symbol } = useParams();
 
@@ -24,6 +35,10 @@ const StockDetailPage = ({ search, setSearch, handleSubmit }) => {
     setStockDetails(symbol);
   }, [symbol]);
 
+  useEffect(() => {
+    fetchWatchlists();
+  }, []);
+
   const loading = () => {
     return <h2>Loading...</h2>;
   };
@@ -36,14 +51,27 @@ const StockDetailPage = ({ search, setSearch, handleSubmit }) => {
         <div>Price: ${stockDetails['02. open']}</div>
         <div>Volume: {stockDetails['06. volume']}</div>
         <div>Change Percent: {stockDetails['10. change percent']}</div>
-        <button>Add to watchlist</button> */}
+         */}
+        <form>
+          <label>
+            <select>
+              {watchlists &&
+                watchlists?.map((watchlist) => (
+                  <option value={watchlist._id} key={watchlist._id}>
+                    {watchlist.name}
+                  </option>
+                ))}
+            </select>
+          </label>
+          <button>Add to watchlist</button>
+        </form>
       </>
     );
   };
 
   return (
     <>
-      <Sidebar />
+      <Sidebar user={user} />
       <SearchBar
         search={search}
         setSearch={setSearch}
