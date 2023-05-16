@@ -3,25 +3,9 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import { getStockDetail } from '../../utilities/stocks-service';
 import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import StockDetail from '../../components/StockDetail/StockDetail';
+import StockDetailPage from '../StockDetailPage/StockDetailPage';
 
-const HomePage = () => {
-  // Need info to get request
-  const [search, setSearch] = useState('');
-  const [error, setError] = useState('');
-  const [stockDetails, setStockDetails] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const foundStock = await getStockDetail(search);
-      setStockDetails(foundStock);
-      setSearch('');
-    } catch {
-      setError('Search for stock failed.');
-    }
-  };
-
+const HomePage = ({ search, setSearch, handleSubmit }) => {
   return (
     <div>
       HomePage
@@ -30,9 +14,7 @@ const HomePage = () => {
         search={search}
         setSearch={setSearch}
         handleSubmit={handleSubmit}
-        error={error}
       />
-      {stockDetails ? <StockDetail quote={stockDetails} /> : null}
     </div>
   );
 };
