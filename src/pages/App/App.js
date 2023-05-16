@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import AuthPage from '../AuthPage/AuthPage';
 import StockDetailPage from '../StockDetailPage/StockDetailPage';
+import WatchlistDetailPage from '../WatchlistDetailPage/WatchlistDetailPage';
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -41,6 +42,17 @@ function App() {
               path="/stocks/:symbol"
               element={
                 <StockDetailPage
+                  user={user}
+                  search={search}
+                  setSearch={setSearch}
+                  handleSubmit={handleSubmit}
+                />
+              }
+            />
+            <Route
+              path="/watchlists/:id"
+              element={
+                <WatchlistDetailPage
                   user={user}
                   search={search}
                   setSearch={setSearch}

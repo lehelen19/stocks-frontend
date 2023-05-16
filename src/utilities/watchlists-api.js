@@ -3,13 +3,17 @@ import sendRequest from './send-request';
 const BASE_URL = '/api/watchlists';
 
 export function getWatchlists() {
-    return sendRequest(BASE_URL);
+  return sendRequest(BASE_URL);
 }
 
 export function createWatchlist(watchlistName) {
-    return sendRequest(BASE_URL, 'POST', { name: watchlistName });
+  return sendRequest(BASE_URL, 'POST', { name: watchlistName });
 }
 
-export function deleteWatchlist() {
-    return sendRequest(BASE_URL, 'POST', { method: "DELETE" })
+export function deleteWatchlist(id) {
+  return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
+}
+
+export function getWatchlistDetails(id) {
+  return sendRequest(`${BASE_URL}/${id}`);
 }
