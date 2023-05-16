@@ -5,18 +5,19 @@ import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import StockDetailPage from '../StockDetailPage/StockDetailPage';
 
-const HomePage = ({ search, setSearch, handleSubmit }) => {
-  return (
-    <div>
-      HomePage
-      <Sidebar />
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-        handleSubmit={handleSubmit}
-      />
-    </div>
-  );
+const HomePage = ({ search, setSearch, handleSubmit, user }) => {
+
+    return (
+        <div>
+            HomePage
+            <Sidebar user={user}/>
+            <SearchBar
+                search={search}
+                setSearch={setSearch}
+                handleSubmit={handleSubmit}
+            />
+        </div>
+    );
 };
 
 export default HomePage;
