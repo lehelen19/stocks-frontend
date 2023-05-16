@@ -9,3 +9,7 @@ export async function deleteWatchlist() {
     const deleteWL = await watchlistsAPI.deleteWatchlist()
     return deleteWL;
 }
+
+export async function logout() {
+    localStorage.removeItem('accessToken');
+}
