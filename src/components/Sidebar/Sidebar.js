@@ -31,6 +31,7 @@ function Sidebar({ user, setUser }) {
   useEffect(() => {
     fetchWatchlists();
   }, []);
+
   const handleClick = () => {
     setShowInput(!showInput);
   };
@@ -43,6 +44,7 @@ function Sidebar({ user, setUser }) {
     e.preventDefault();
     try {
       await createWatchlist(watchlistName);
+      setWatchlistName('');
       fetchWatchlists();
     } catch (err) {
       setError('New watchlist creation failed - try again');
