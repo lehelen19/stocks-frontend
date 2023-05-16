@@ -7,6 +7,7 @@ export async function getWatchlists() {
 
 export async function deleteWatchlist(_id) {
     const eraseWatchlist = await watchlistsAPI.deleteWatchlist(_id);
+    return eraseWatchlist;
 }
 
 export async function createWatchlist(watchlistName) {

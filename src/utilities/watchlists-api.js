@@ -9,7 +9,3 @@ export function getWatchlists() {
 export function createWatchlist(watchlistName) {
     return sendRequest(BASE_URL, 'POST', { name: watchlistName });
 }
-
-export function deleteWatchlist() {
-    return sendRequest(BASE_URL, 'POST', { method: "DELETE" })
-}
