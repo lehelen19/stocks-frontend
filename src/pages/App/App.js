@@ -29,6 +29,7 @@ function App() {
               path="/"
               element={
                 <HomePage
+                  user={user}
                   search={search}
                   setSearch={setSearch}
                   handleSubmit={handleSubmit}
@@ -39,6 +40,7 @@ function App() {
               path="/stocks/:symbol"
               element={
                 <StockDetailPage
+                  user={user}
                   search={search}
                   setSearch={setSearch}
                   handleSubmit={handleSubmit}

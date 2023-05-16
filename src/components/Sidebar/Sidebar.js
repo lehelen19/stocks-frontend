@@ -5,32 +5,28 @@ import { getWatchlists } from '../../utilities/watchlists-service';
 // import WatchlistList from './WatchlistList';
 
 function Sidebar({ user }) {
+  const [watchlists, setWatchlists] = useState(null);
 
-    const [watchlists, setWatchlists] = useState(null);
-
-    const fetchWatchlists = async () => {
-        try {
-            const foundWatchlists = await getWatchlists()
-            setWatchlists(foundWatchlists)
-
-
-        } catch (error) {
-            console.log(error);
-        }
+  const fetchWatchlists = async () => {
+    try {
+      const foundWatchlists = await getWatchlists();
+      setWatchlists(foundWatchlists);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    useEffect(() => {
-        fetchWatchlists()
-    }, [])
+  useEffect(() => {
+    fetchWatchlists();
+  }, []);
 
-    return (
-        <div className="user-sidebar">
-            <h3>Welcome, {JSON.stringify(user)}</h3>
-            {JSON.stringify(watchlists)}
-            {/* <CreateWatchlistButton onCreate={create} />  */}
-            {/* <WatchlistList watchlists={watchlists} /> */}
-        </div>
-    );
+  return (
+    <div className="user-sidebar">
+      <h3>Welcome, {user.username}!</h3>
+      {/* <CreateWatchlistButton onCreate={create} />  */}
+      {/* <WatchlistList watchlists={watchlists} /> */}
+    </div>
+  );
 }
 
-export default Sidebar
+export default Sidebar;
