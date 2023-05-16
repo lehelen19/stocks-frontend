@@ -3,9 +3,10 @@ import {
     getWatchlists,
     createWatchlist,
 } from '../../utilities/watchlists-service';
+import { logOut } from '../../utilities/users-service';
 import { Link } from 'react-router-dom';
 
-function Sidebar({ user }) {
+function Sidebar({ user, setUser }) {
     const [watchlists, setWatchlists] = useState(null);
     const [watchlistName, setWatchlistName] = useState('');
     const [showInput, setShowInput] = useState(false);
@@ -22,7 +23,8 @@ function Sidebar({ user }) {
     };
 
     const handleLogout = () => {
-        logout();
+        logOut();
+        setUser(null)
     }
 
     useEffect(() => {
@@ -73,6 +75,7 @@ function Sidebar({ user }) {
                         );
                     })}
             </section>
+            <button onClick={handleLogout} >Log Out</button>
         </div>
     );
 }
