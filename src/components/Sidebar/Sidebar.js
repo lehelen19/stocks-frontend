@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
+import { getWatchlists } from '../../utilities/watchlists-service';
 // import CreateWatchlistButton from './CreateWatchlistButton';
 // import WatchlistList from './WatchlistList';
 
-function Sidebar({user}) {
+function Sidebar({ user }) {
 
     const [watchlists, setWatchlists] = useState(null);
 
@@ -12,18 +13,20 @@ function Sidebar({user}) {
             const foundWatchlists = await getWatchlists()
             setWatchlists(foundWatchlists)
 
-            
+
         } catch (error) {
             console.log(error);
         }
     }
 
-    useEffect()
+    useEffect(() => {
+        fetchWatchlists()
+    }, [])
 
     return (
         <div className="user-sidebar">
             <h3>Welcome, {JSON.stringify(user)}</h3>
-            
+            {JSON.stringify(watchlists)}
             {/* <CreateWatchlistButton onCreate={create} />  */}
             {/* <WatchlistList watchlists={watchlists} /> */}
         </div>
