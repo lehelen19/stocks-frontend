@@ -10,7 +10,7 @@ const WatchlistDetailPage = ({ user, search, setSearch, handleSubmit }) => {
 
   const { id } = useParams();
 
-  const fetchWatchlistDetails = async () => {
+  const fetchWatchlistDetails = async (id) => {
     try {
       const foundWatchlist = await getWatchlistDetails(id);
       setWatchlistDetails(foundWatchlist);
@@ -20,8 +20,8 @@ const WatchlistDetailPage = ({ user, search, setSearch, handleSubmit }) => {
   };
 
   useEffect(() => {
-    fetchWatchlistDetails();
-  }, []);
+    fetchWatchlistDetails(id);
+  }, [id]);
 
   return (
     <>
