@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import { getWatchlistDetails } from '../../utilities/watchlists-service';
 
 const WatchlistDetailPage = ({ user, search, setSearch, handleSubmit }) => {
   const [watchlistDetails, setWatchlistDetails] = useState(null);
