@@ -17,3 +17,7 @@ export function deleteWatchlist(id) {
 export function getWatchlistDetails(id) {
   return sendRequest(`${BASE_URL}/${id}`);
 }
+
+export function updateWatchlistName(id, newName) {
+  return sendRequest(`${BASE_URL}/${watchlistId}`, 'POST', { name: newName });
+}
