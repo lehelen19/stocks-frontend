@@ -6,4 +6,6 @@ export function getWatchlists() {
     return sendRequest(BASE_URL);
 }
 
-export function deleteWatchlist
+export function deleteWatchlist(id) {
+    return sendRequest(`${BASE_URL}/${id}`, { method: "DELETE" });
+} 
