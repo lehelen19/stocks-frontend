@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
-import { getWatchlists } from '../../utilities/watchlists-service';
+import {
+  getWatchlists,
+  createWatchlist,
+} from '../../utilities/watchlists-service';
 // import CreateWatchlistButton from './CreateWatchlistButton';
 // import WatchlistList from './WatchlistList';
 
 function Sidebar({ user }) {
   const [watchlists, setWatchlists] = useState(null);
-  const [newWatchlist, setNewWatchlist] = useState('');
+  const [watchlistName, setWatchlistName] = useState('');
   const [showInput, setShowInput] = useState(false);
+  const [error, setError] = useState('');
 
   const fetchWatchlists = async () => {
     try {
@@ -27,12 +31,18 @@ function Sidebar({ user }) {
   };
 
   const handleChange = (e) => {
-    setNewWatchlist(e.target.value);
+    setWatchlistName(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('submitted!');
+    try {
+      await createWatchlist(watchlistName);
+      fetchWatchlists();
+    } catch (err) {
+      setError('New watchlist creation failed - try again');
+    }
   };
 
   return (
@@ -44,7 +54,7 @@ function Sidebar({ user }) {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            value={newWatchlist}
+            value={watchlistName}
             onChange={handleChange}
             placeholder="New watchlist name..."
           />
