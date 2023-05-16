@@ -23,6 +23,7 @@ function Sidebar({ user }) {
   return (
     <div className="user-sidebar">
       <h3>Welcome, {user.username}!</h3>
+      <p>Watchlists: {watchlists}</p>
       {/* <CreateWatchlistButton onCreate={create} />  */}
       {/* <WatchlistList watchlists={watchlists} /> */}
     </div>
