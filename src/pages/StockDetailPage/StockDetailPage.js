@@ -4,7 +4,7 @@ import { getStockDetail } from '../../utilities/stocks-service';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
-const StockDetailPage = ({ search, setSearch, handleSubmit }) => {
+const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
   const [stockDetails, setStockDetails] = useState(null);
   const [error, setError] = useState('');
 
@@ -43,7 +43,7 @@ const StockDetailPage = ({ search, setSearch, handleSubmit }) => {
 
   return (
     <>
-      <Sidebar />
+      <Sidebar user={user} />
       <SearchBar
         search={search}
         setSearch={setSearch}
