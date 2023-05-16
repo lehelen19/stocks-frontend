@@ -5,6 +5,7 @@ export async function getWatchlists() {
   return watchlists;
 }
 
-export async function createWatchlist() {
-  await watchlistsAPI.createWatchlist();
+export async function createWatchlist(watchlistName) {
+  const newWatchlist = await watchlistsAPI.createWatchlist(watchlistName);
+  return newWatchlist;
 }
