@@ -5,12 +5,12 @@ import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import StockDetailPage from '../StockDetailPage/StockDetailPage';
 
-const HomePage = ({ search, setSearch, handleSubmit, user }) => {
+const HomePage = ({ search, setSearch, handleSubmit, user, setUser }) => {
 
     return (
         <div>
             HomePage
-            <Sidebar user={user}/>
+            <Sidebar user={user} setUser={setUser} />
             <SearchBar
                 search={search}
                 setSearch={setSearch}

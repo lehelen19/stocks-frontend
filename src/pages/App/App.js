@@ -31,6 +31,7 @@ function App() {
               element={
                 <HomePage
                   user={user}
+                  setUser={setUser}
                   search={search}
                   setSearch={setSearch}
                   handleSubmit={handleSubmit}
