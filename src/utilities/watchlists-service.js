@@ -13,3 +13,8 @@ export async function deleteWatchlist() {
 export async function logout() {
     localStorage.removeItem('accessToken');
 }
+
+export async function createWatchlist(watchlistName) {
+  const newWatchlist = await watchlistsAPI.createWatchlist(watchlistName);
+  return newWatchlist;
+}
