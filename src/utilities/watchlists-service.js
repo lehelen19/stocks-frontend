@@ -19,3 +19,8 @@ export async function getWatchlistDetails(id) {
   const watchlistDetails = await watchlistsAPI.getWatchlistDetails(id);
   return watchlistDetails;
 }
+
+export async function addStock(id, symbol) {
+  const updatedWatchlist = await watchlistsAPI.addStock(id, symbol);
+  return updatedWatchlist;
+}
