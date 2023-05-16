@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import SearchBar from '../SearchBar/SearchBar';
 import {
   getWatchlists,
   createWatchlist,
 } from '../../utilities/watchlists-service';
-// import CreateWatchlistButton from './CreateWatchlistButton';
-// import WatchlistList from './WatchlistList';
+import { Link } from 'react-router-dom';
 
 function Sidebar({ user }) {
   const [watchlists, setWatchlists] = useState(null);
   const [watchlistName, setWatchlistName] = useState('');
   const [showInput, setShowInput] = useState(false);
+  //   RENDER ERROR
   const [error, setError] = useState('');
 
   const fetchWatchlists = async () => {
@@ -36,7 +35,6 @@ function Sidebar({ user }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('submitted!');
     try {
       await createWatchlist(watchlistName);
       fetchWatchlists();
@@ -47,7 +45,7 @@ function Sidebar({ user }) {
 
   return (
     <div className="user-sidebar">
-      <h3>Welcome, {user.username}!</h3>
+      <h1>Welcome, {user.username}!</h1>
 
       <button onClick={handleClick}>Create new watchlist</button>
       {showInput && (
@@ -61,7 +59,18 @@ function Sidebar({ user }) {
           <button>Submit</button>
         </form>
       )}
-      <p>Watchlists: {watchlists}</p>
+      <section>
+        <h2>Watchlists</h2>
+        {watchlists &&
+          watchlists.map((watchlist) => {
+            const { name, _id } = watchlist;
+            return (
+              <Link to={`/watchlists/${_id}`} key={_id}>
+                <p>{name}</p>
+              </Link>
+            );
+          })}
+      </section>
     </div>
   );
 }
