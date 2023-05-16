@@ -26,6 +26,8 @@ const WatchlistDetailPage = ({ user, search, setSearch, handleSubmit }) => {
   return (
     <>
       <h3>Watchlist Details</h3>
+      {watchlistDetails &&
+        watchlistDetails.stock?.forEach((stock) => <p>{stock}</p>)}
       <Sidebar user={user} />
       <SearchBar
         search={search}
