@@ -1,12 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getStockDetail } from '../../utilities/stocks-service';
+import { getWatchlists } from '../../utilities/watchlists-service';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
 const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
   const [stockDetails, setStockDetails] = useState(null);
+  const [watchlists, setWatchlists] = useState(null);
   const [error, setError] = useState('');
+
+  const fetchWatchlists = async () => {
+    try {
+      const foundWatchlists = await getWatchlists();
+      setWatchlists(foundWatchlists);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const { symbol } = useParams();
 
@@ -24,6 +35,10 @@ const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
     setStockDetails(symbol);
   }, [symbol]);
 
+  useEffect(() => {
+    fetchWatchlists();
+  }, []);
+
   const loading = () => {
     return <h2>Loading...</h2>;
   };
@@ -40,8 +55,12 @@ const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
         <form>
           <label>
             <select>
-              <option>Watchlist 1</option>
-              <option defaultValue={2}>Watchlist 2</option>
+              {watchlists &&
+                watchlists?.map((watchlist) => (
+                  <option value={watchlist._id} key={watchlist._id}>
+                    {watchlist.name}
+                  </option>
+                ))}
             </select>
           </label>
           <button>Add to watchlist</button>
