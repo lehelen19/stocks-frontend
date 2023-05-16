@@ -3,6 +3,7 @@ import {
   getWatchlists,
   createWatchlist,
   deleteWatchlist,
+  updateWatchlistName
 } from '../../utilities/watchlists-service';
 import { logOut } from '../../utilities/users-service';
 import { Link } from 'react-router-dom';
@@ -57,6 +58,14 @@ function Sidebar({ user, setUser }) {
     }
   };
 
+  const handleUpdateWatchlistName = async (id, newName) => {
+    try {
+        await updateWatchlistName(id, newName);
+        fetchWatchlists();
+    } catch (error) {
+        console.log(error);
+    }
+  }
   return (
     <div className="user-sidebar">
       <h1>Welcome, {user.username}!</h1>

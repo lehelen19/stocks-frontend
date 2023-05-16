@@ -19,5 +19,5 @@ export function getWatchlistDetails(id) {
 }
 
 export function updateWatchlistName(id, newName) {
-  return sendRequest(`${BASE_URL}/${watchlistId}`, 'POST', { name: newName });
+  return sendRequest(`${BASE_URL}/${id}`, 'POST', { name: newName });
 }
