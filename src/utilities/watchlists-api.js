@@ -17,3 +17,7 @@ export function deleteWatchlist(id) {
 export function getWatchlistDetails(id) {
   return sendRequest(`${BASE_URL}/${id}`);
 }
+
+export function addStock(id, symbol) {
+  return sendRequest(`${BASE_URL}/${id}/stocks`, 'POST', { stock: symbol });
+}

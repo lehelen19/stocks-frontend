@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getStockDetail } from '../../utilities/stocks-service';
-import { getWatchlists } from '../../utilities/watchlists-service';
+import { getWatchlists, addStock } from '../../utilities/watchlists-service';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
@@ -40,8 +40,13 @@ const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
     fetchWatchlists();
   }, []);
 
-  const handleAddStockSubmit = (e) => {
+  const handleAddStockSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await addStock(selectedWatchlist, symbol);
+    } catch (error) {
+      setError(error);
+    }
   };
 
   const loading = () => {
