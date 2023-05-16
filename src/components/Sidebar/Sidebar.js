@@ -12,6 +12,7 @@ function Sidebar({ user }) {
     //   RENDER ERROR
     const [error, setError] = useState('');
 
+
     const fetchWatchlists = async () => {
         try {
             const foundWatchlists = await getWatchlists();
@@ -21,15 +22,9 @@ function Sidebar({ user }) {
         }
     };
 
-    const handleLogout = () => {
-        logout();
-        setUser(null);
-    }
-
     useEffect(() => {
         fetchWatchlists();
     }, []);
-
     const handleClick = () => {
         setShowInput(!showInput);
     };
@@ -47,10 +42,10 @@ function Sidebar({ user }) {
             setError('New watchlist creation failed - try again');
         }
     };
-
     return (
         <div className="user-sidebar">
-            <h3>Welcome, {user.username}!</h3>
+            <h1>Welcome, {user.username}!</h1>
+
             <button onClick={handleClick}>Create new watchlist</button>
             {showInput && (
                 <form onSubmit={handleSubmit}>
@@ -75,7 +70,6 @@ function Sidebar({ user }) {
                         );
                     })}
             </section>
-
         </div>
     );
 }
