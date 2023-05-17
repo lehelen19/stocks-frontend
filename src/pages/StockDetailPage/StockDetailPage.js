@@ -94,14 +94,18 @@ const StockDetailPage = ({
       <div>
         <Sidebar user={user} setUser={setUser} />
       </div>
-
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-        handleSubmit={handleSubmit}
-      />
-      {stockDetails ? loaded() : loading()}
-      <p className="error-message">&nbsp;{error}</p>
+      <section className="col-span-2  bg-gray-300">
+        <h1>Stock Detail Page</h1>
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          handleSubmit={handleSubmit}
+        />
+        <div>
+          {stockDetails ? loaded() : loading()}
+          <p className="error-message">&nbsp;{error}</p>
+        </div>
+      </section>
     </div>
   );
 };
