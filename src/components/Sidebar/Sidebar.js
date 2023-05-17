@@ -98,7 +98,7 @@ function Sidebar({ user, setUser }) {
           watchlists.map((watchlist) => {
             const { name, _id } = watchlist;
             return (
-              <div key={_id} className="flex mt-4 lg:mt-0">
+              <div>
                 {editingId === _id ? (
                   <input
                     type="text"
@@ -108,7 +108,7 @@ function Sidebar({ user, setUser }) {
                     autoFocus
                   />
                 ) : (
-                  <div>
+                  <div key={_id} className="flex mt-4 lg:mt-0">
                     <Link
                       to={`/watchlists/${_id}`}
                       className="block lg:inline-block text-teal-200 hover:text-white mr-4"
