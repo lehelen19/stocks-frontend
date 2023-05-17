@@ -8,7 +8,7 @@ const HomePage = ({ search, setSearch, handleSubmit, user, setUser }) => {
       <div>
         <Sidebar user={user} setUser={setUser} />
       </div>
-      <section className="col-span-2 flex justify-around bg-gray-300">
+      <section className="col-span-2 flex justify-around bg-teal-50">
         <h1>Home Page</h1>
         <SearchBar
           search={search}

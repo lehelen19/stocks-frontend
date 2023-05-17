@@ -62,7 +62,7 @@ const StockDetailPage = ({
   const loaded = () => {
     return (
       <>
-        <h1 className="uppercase text-2xl my-5">{stockDetails}</h1>
+        <h2 className="uppercase text-2xl my-5">{stockDetails}</h2>
         {/* <h1>{stockDetails['01. symbol']}</h1>
         <div>Price: ${stockDetails['02. open']}</div>
         <div>Volume: {stockDetails['06. volume']}</div>
@@ -100,7 +100,7 @@ const StockDetailPage = ({
       <div>
         <Sidebar user={user} setUser={setUser} />
       </div>
-      <section className="col-span-2  bg-gray-300">
+      <section className="col-span-2 bg-teal-50">
         <SearchBar
           search={search}
           setSearch={setSearch}
