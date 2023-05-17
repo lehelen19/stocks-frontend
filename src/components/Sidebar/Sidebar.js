@@ -60,23 +60,23 @@ function Sidebar({ user, setUser }) {
         }
     };
 
-    const handleStartEditing = async (id, newName) => {
-        setEditingId(id);
-    };
-    const handleFinishEditing = async (id, newName) => {
-        try {
-            await updateWatchlistName(id, newName);
-            setEditingId(null);
-            fetchWatchlists();
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    return (
-        <div className="bg-teal-500 p-6 h-full">
-            <h1 className="text-white font-bold text-2xl capitalize">
-                Welcome, {user.username}!
-            </h1>
+  const handleStartEditing = async (id, newName) => {
+    setEditingId(id);
+  };
+  const handleFinishEditing = async (id, newName) => {
+    try {
+      await updateWatchlistName(id, newName);
+      setEditingId(null);
+      fetchWatchlists();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <div className="bg-teal-500 p-5">
+      <Link to="/" className="text-white font-bold text-2xl capitalize">
+        Welcome, {user.username}!
+      </Link>
 
             <button onClick={handleClick} className="text-white hover:underline my-1">
                 Create new watchlist
