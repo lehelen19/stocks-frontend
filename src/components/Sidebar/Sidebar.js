@@ -41,28 +41,32 @@ function Sidebar({ user, setUser }) {
         setWatchlistName(e.target.value);
     };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await createWatchlist(watchlistName);
-      setWatchlistName('');
-      fetchWatchlists();
-    } catch (err) {
-      setError('New watchlist creation failed - try again');
-    }
-  };
-  const handleDeleteWatchlist = async (_id) => {
-    try {
-      await deleteWatchlist(_id);
-      fetchWatchlists();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await createWatchlist(watchlistName);
+            setWatchlistName('');
+            fetchWatchlists();
+        } catch (err) {
+            setError('New watchlist creation failed - try again');
+        }
+    };
+    const handleDeleteWatchlist = async (_id) => {
+        try {
+            await deleteWatchlist(_id);
+            fetchWatchlists();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    const handleUpdateWatchlistName = async (id, newName) => {
+    const handleStartEditing = async (id, newName) => {
+        setEditingId(id);
+    }
+    const handleFinishEditing = async (id, newName) => {
         try {
             await updateWatchlistName(id, newName);
+            setEditingId(null);
             fetchWatchlists();
         } catch (error) {
             console.log(error);
@@ -91,11 +95,27 @@ function Sidebar({ user, setUser }) {
                         const { name, _id } = watchlist;
                         return (
                             <div key={_id}>
-                                <Link to={`/watchlists/${_id}`}>
-                                    <p>{name}</p>
-                                </Link>
-                                <button onClick={() => handleDeleteWatchlist(_id)}>X</button>
+                                {editingId === _id ?
+                                    (
+                                        <input
+                                            type='text'
+                                            value={watchlistName}
+                                            onChange={handleChange}
+                                            onBlur={() => handleFinishEditing(_id, watchlistName)}
+                                            autoFocus
+                                        />
+                                    ) : (
+                                        <div>
+                                            <Link to={`/watchlists/${_id}`}>
+                                                <p>{name}</p>
+                                            </Link>
+                                            <button onClick={() => handleStartEditing(_id)}>
+                                                Edit</button>
+                                            <button onClick={() => handleDeleteWatchlist(_id)}>X</button>
+                                        </div>
+                                    )}
                             </div>
+
                         );
                     })}
             </section>
