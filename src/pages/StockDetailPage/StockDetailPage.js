@@ -70,10 +70,11 @@ const StockDetailPage = ({
   const loaded = () => {
     return (
       <>
+      <div className='' >
         <h2 className="uppercase text-2xl my-5">
           {stockDetails['01. symbol']}
         </h2>
-        <form onSubmit={handleAddStockSubmit}>
+        <form onSubmit={handleAddStockSubmit} className='mb-6' >
           <label>
             <select
               value={selectedWatchlist}
@@ -95,21 +96,30 @@ const StockDetailPage = ({
             Add to watchlist
           </button>
         </form>
-        <ul>
-          <li>Price: ${roundNumber(stockDetails['05. price'])}</li>
-          <li>Open: ${roundNumber(stockDetails['02. open'])}</li>
-          <li>High: ${roundNumber(stockDetails['03. high'])}</li>
-          <li>Low: ${roundNumber(stockDetails['04. low'])}</li>
-          <li>
-            Latest Trading Day:{' '}
-            {displayDate(stockDetails['07. latest trading day'])}
-          </li>
-          <li>
-            Previous Close: ${roundNumber(stockDetails['08. previous close'])}
-          </li>
-          <li>Volume: {stockDetails['06. volume']}</li>
-          <li>Change Percent: {stockDetails['10. change percent']}</li>
-        </ul>
+        <div className="flex">
+        <div className="w-1/2">
+          <ul>
+            <li>Price: ${roundNumber(stockDetails['05. price'])}</li>
+            <li>Open: ${roundNumber(stockDetails['02. open'])}</li>
+            <li>High: ${roundNumber(stockDetails['03. high'])}</li>
+            <li>Low: ${roundNumber(stockDetails['04. low'])}</li>
+          </ul>
+        </div>
+        <div className="w-1/2">
+          <ul>
+            <li>
+              Latest Trading Day:{' '}
+              {displayDate(stockDetails['07. latest trading day'])}
+            </li>
+            <li>
+              Previous Close: ${roundNumber(stockDetails['08. previous close'])}
+            </li>
+            <li>Volume: {stockDetails['06. volume']}</li>
+            <li>Change Percent: {stockDetails['10. change percent']}</li>
+          </ul>
+        </div>
+      </div>
+      </div>
       </>
     );
   };
