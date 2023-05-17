@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 function Sidebar({ user, setUser }) {
     const [watchlists, setWatchlists] = useState(null);
     const [watchlistName, setWatchlistName] = useState('');
+    const [editingId, setEditingId] = useState(null);
     const [showInput, setShowInput] = useState(false);
     //   RENDER ERROR
     const [error, setError] = useState('');
