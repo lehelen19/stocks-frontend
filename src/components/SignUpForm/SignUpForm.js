@@ -36,41 +36,81 @@ export default class SignUpForm extends Component {
     const disabled = this.state.password !== this.state.confirm;
     return (
       <div>
-        <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <label>Username</label>
+        <div className="flex justify-center">
+          <form
+            autoComplete="off"
+            onSubmit={this.handleSubmit}
+            className="w-full max-w-sm flex flex-col p-10"
+          >
+            <h1 className="block uppercase tracking-wide font-bold">
+              Register
+            </h1>
+            <hr className="m-2" />
+            <label
+              htmlFor="username"
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            >
+              Username
+            </label>
             <input
               type="text"
               name="username"
               value={this.state.username}
               onChange={this.handleChange}
               required
+              id="username"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             />
-            <label>Email</label>
+            <label
+              htmlFor="email"
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            >
+              Email
+            </label>
             <input
               type="email"
               name="email"
               value={this.state.email}
               onChange={this.handleChange}
               required
+              id="email"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             />
-            <label>Password</label>
+            <label
+              htmlFor="password"
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            >
+              Password
+            </label>
             <input
               type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
               required
+              id="password"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             />
-            <label>Confirm</label>
+            <label
+              htmlFor="confirm"
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            >
+              Confirm
+            </label>
             <input
               type="password"
               name="confirm"
               value={this.state.confirm}
               onChange={this.handleChange}
               required
+              id="confirm"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             />
-            <button type="submit" disabled={disabled}>
+            <button
+              type="submit"
+              disabled={disabled}
+              className="block uppercase tracking-wide text-gray-700 m-5 border-2 p-1"
+            >
               Sign Up
             </button>
           </form>
