@@ -1,23 +1,23 @@
-import { useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { getStockDetail } from '../../utilities/stocks-service';
 import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import StockDetailPage from '../StockDetailPage/StockDetailPage';
 
 const HomePage = ({ search, setSearch, handleSubmit, user, setUser }) => {
-
-    return (
-        <div>
-            HomePage
-            <Sidebar user={user} setUser={setUser} />
-            <SearchBar
-                search={search}
-                setSearch={setSearch}
-                handleSubmit={handleSubmit}
-            />
-        </div>
-    );
+  return (
+    <div className="grid grid-cols-3">
+      <div>
+        <Sidebar user={user} setUser={setUser} />
+      </div>
+      <section className="col-span-2 flex justify-around bg-gray-300">
+        <h1>Home Page</h1>
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          handleSubmit={handleSubmit}
+        />
+      </section>
+    </div>
+  );
 };
 
 export default HomePage;
