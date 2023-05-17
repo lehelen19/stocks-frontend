@@ -76,20 +76,24 @@ const WatchlistDetailPage = ({
           <section>
             {!!watchlistDetails &&
               !!stocksDetails &&
-              watchlistDetails.stocks.map((stock) => (
-                <article key={stock}>
-                  <h3 className="uppercase">
-                    {stocksDetails[stock]['01. symbol']}
-                  </h3>
-                  <li>
-                    Price: ${roundNumber(stocksDetails[stock]['05. price'])}
-                  </li>
-                  <li>
-                    Change Percentage:{' '}
-                    {stocksDetails[stock]['10. change percent']}
-                  </li>
-                </article>
-              ))}
+              watchlistDetails.stocks.map((stock) => {
+                if (stocksDetails[stock]) {
+                  return (
+                    <article key={stock}>
+                      <h3 className="uppercase">
+                        {stocksDetails[stock]['01. symbol']}
+                      </h3>
+                      <li>
+                        Price: ${roundNumber(stocksDetails[stock]['05. price'])}
+                      </li>
+                      <li>
+                        Change Percentage:{' '}
+                        {stocksDetails[stock]['10. change percent']}
+                      </li>
+                    </article>
+                  );
+                }
+              })}
           </section>
         </div>
       </div>
