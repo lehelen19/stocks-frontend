@@ -73,7 +73,7 @@ function Sidebar({ user, setUser }) {
         }
     };
     return (
-        <div className="bg-teal-500 p-5">
+        <div className="bg-teal-500 p-6">
             <h1 className="text-white font-bold text-2xl capitalize">
                 Welcome, {user.username}!
             </h1>
@@ -126,7 +126,7 @@ function Sidebar({ user, setUser }) {
                                             <p>{name}</p>
                                         </Link>
                                         <button
-                                            className="mr-4 rounded-md px-2  text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                            className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                                             onClick={() => handleDeleteWatchlist(_id)}
                                         >
                                             X
