@@ -38,8 +38,7 @@ const StockDetailPage = ({
   };
 
   useEffect(() => {
-    // fetchStockDetails();
-    setStockDetails(symbol);
+    fetchStockDetails();
   }, [symbol]);
 
   useEffect(() => {
@@ -59,16 +58,21 @@ const StockDetailPage = ({
     return <h2>Loading...</h2>;
   };
 
+  const roundNumber = (str) => {
+    return Math.round((Number(str) + Number.EPSILON) * 100) / 100;
+  };
+
+  const displayDate = (str) => {
+    const date = new Date(str);
+    return date.toLocaleDateString();
+  };
+
   const loaded = () => {
     return (
       <>
-        <h2 className="uppercase text-2xl my-5">{stockDetails}</h2>
-        {/* <h1>{stockDetails['01. symbol']}</h1>
-        <div>Price: ${stockDetails['02. open']}</div>
-        <div>Volume: {stockDetails['06. volume']}</div>
-        <div>Change Percent: {stockDetails['10. change percent']}</div>
-         */}
-
+        <h2 className="uppercase text-2xl my-5">
+          {stockDetails['01. symbol']}
+        </h2>
         <form onSubmit={handleAddStockSubmit}>
           <label>
             <select
@@ -91,6 +95,21 @@ const StockDetailPage = ({
             Add to watchlist
           </button>
         </form>
+        <ul>
+          <li>Price: ${roundNumber(stockDetails['05. price'])}</li>
+          <li>Open: ${roundNumber(stockDetails['02. open'])}</li>
+          <li>High: ${roundNumber(stockDetails['03. high'])}</li>
+          <li>Low: ${roundNumber(stockDetails['04. low'])}</li>
+          <li>
+            Latest Trading Day:{' '}
+            {displayDate(stockDetails['07. latest trading day'])}
+          </li>
+          <li>
+            Previous Close: ${roundNumber(stockDetails['08. previous close'])}
+          </li>
+          <li>Volume: {stockDetails['06. volume']}</li>
+          <li>Change Percent: {stockDetails['10. change percent']}</li>
+        </ul>
       </>
     );
   };
