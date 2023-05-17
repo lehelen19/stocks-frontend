@@ -20,8 +20,8 @@ const WatchlistDetailPage = ({
     try {
       const foundWatchlist = await getWatchlistDetails(id);
       setWatchlistDetails(foundWatchlist);
-    } catch (error) {
-      setError(error);
+    } catch {
+      setError('Watchlist could not be found.');
     }
   };
 
@@ -42,6 +42,7 @@ const WatchlistDetailPage = ({
         />
         <section>
           <h3 className="text-teal-600 text-center m-4 text-xl">
+            <p>{error}</p>
             {!!watchlistDetails && watchlistDetails.name}
           </h3>
           {!!watchlistDetails &&
