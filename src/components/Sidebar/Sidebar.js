@@ -73,7 +73,7 @@ function Sidebar({ user, setUser }) {
     }
   };
   return (
-    <div className="bg-teal-500 p-5">
+    <div className="bg-teal-500 p-6 h-full">
       <Link to="/" className="text-white font-bold text-2xl capitalize">
         Welcome, {user.username}!
       </Link>
