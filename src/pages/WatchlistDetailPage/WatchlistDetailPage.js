@@ -30,11 +30,11 @@ const WatchlistDetailPage = ({
   }, [id]);
 
   return (
-    <div className="grid grid-cols-3">
-      <div>
+    <div className="flex h-screen">
+      <div className="h-full" >
         <Sidebar user={user} setUser={setUser} />
       </div>
-      <div className="col-span-2 bg-teal-50">
+      <div className="flex-1 bg-teal-50">
         <SearchBar
           search={search}
           setSearch={setSearch}
@@ -46,7 +46,9 @@ const WatchlistDetailPage = ({
           </h3>
           {!!watchlistDetails &&
             watchlistDetails.stocks.map((stock) => (
-              <article key={stock}>{stock}</article>
+              <article 
+              className="border-t border-b border-gray-300 p-4 w-full"
+              key={stock}>{stock}</article>
             ))}
         </section>
       </div>

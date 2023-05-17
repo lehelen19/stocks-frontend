@@ -73,7 +73,7 @@ function Sidebar({ user, setUser }) {
         }
     };
     return (
-        <div className="bg-teal-500 p-6">
+        <div className="bg-teal-500 p-6 h-full">
             <h1 className="text-white font-bold text-2xl capitalize">
                 Welcome, {user.username}!
             </h1>
@@ -140,9 +140,12 @@ function Sidebar({ user, setUser }) {
                         );
                     })}
             </nav>
+            <div >
             <button 
             className="text-white hover:underline my-1 bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2"
             onClick={handleLogout}>Log Out</button>
+            </div>
+            
         </div>
     );
 }
