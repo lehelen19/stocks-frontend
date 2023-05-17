@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { getWatchlistDetails } from '../../utilities/watchlists-service';
+import { getStockDetail } from '../../utilities/stocks-service';
 
 const WatchlistDetailPage = ({
   user,
@@ -12,6 +13,7 @@ const WatchlistDetailPage = ({
   setUser,
 }) => {
   const [watchlistDetails, setWatchlistDetails] = useState(null);
+  const [stocksDetails, setStocksDetails] = useState(null);
   const [error, setError] = useState('');
 
   const { id } = useParams();
@@ -28,6 +30,25 @@ const WatchlistDetailPage = ({
   useEffect(() => {
     fetchWatchlistDetails(id);
   }, [id]);
+
+  useEffect(() => {
+    const fetchStockDetails = async (symbol) => {
+      try {
+        const foundStock = await getStockDetail(symbol);
+        console.log(foundStock);
+        setStocksDetails((stocksDetails) => ({
+          ...stocksDetails,
+          [symbol]: foundStock['Global Quote'],
+        }));
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    if (watchlistDetails && watchlistDetails.stocks.length) {
+      watchlistDetails.stocks.forEach((symbol) => fetchStockDetails(symbol));
+    }
+  }, [watchlistDetails]);
 
   return (
     <div className="grid grid-cols-3">
@@ -47,8 +68,12 @@ const WatchlistDetailPage = ({
           </h3>
           {!!watchlistDetails &&
             watchlistDetails.stocks.map((stock) => (
-              <article key={stock}>{stock}</article>
+              <article key={stock} className="uppercase">
+                {stock}
+              </article>
             ))}
+
+          {stocksDetails && JSON.stringify(stocksDetails)}
         </section>
       </div>
     </div>
