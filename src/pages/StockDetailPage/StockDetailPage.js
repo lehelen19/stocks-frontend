@@ -29,17 +29,16 @@ const StockDetailPage = ({
 
   const { symbol } = useParams();
 
-  const fetchStockDetails = async () => {
-    try {
-      const foundStock = await getStockDetail(symbol);
-      setStockDetails(foundStock['Global Quote']);
-      setSuccess(false);
-    } catch {
-      setError({ detail: 'Stock details could not be fetched.' });
-    }
-  };
-
   useEffect(() => {
+    const fetchStockDetails = async () => {
+      try {
+        const foundStock = await getStockDetail(symbol);
+        setStockDetails(foundStock['Global Quote']);
+        setSuccess(false);
+      } catch {
+        setError({ detail: 'Stock details could not be fetched.' });
+      }
+    };
     fetchStockDetails();
   }, [symbol]);
 
