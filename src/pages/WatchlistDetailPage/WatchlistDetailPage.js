@@ -92,6 +92,8 @@ const WatchlistDetailPage = ({
                       </li>
                     </article>
                   );
+                } else {
+                  return <p>{stock.name}</p>;
                 }
               })}
           </section>
