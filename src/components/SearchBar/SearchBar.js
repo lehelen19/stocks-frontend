@@ -11,7 +11,7 @@ const SearchBar = ({ handleSubmit, search, setSearch, error }) => {
             type="text"
             placeholder="Search for ticker symbol..."
             value={search}
-            max={5}
+            maxLength={5}
             onChange={handleChange}
             required
             className="border-2 border-stone-100 rounded-md shadow-md mr-2 ml-1 py-1 px-1"

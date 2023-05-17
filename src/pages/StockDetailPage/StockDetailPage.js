@@ -72,6 +72,14 @@ const StockDetailPage = ({
   };
 
   const loaded = () => {
+    if (Object.keys(stockDetails).length === 0) {
+      return (
+        <p className="text-lg m-2">
+          Stock could not be found. Make sure you inputted a valid ticker
+          symbol.
+        </p>
+      );
+    }
     return (
       <>
         <h2 className="uppercase text-2xl my-5">
