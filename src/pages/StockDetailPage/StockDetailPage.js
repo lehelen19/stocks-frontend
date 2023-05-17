@@ -15,6 +15,7 @@ const StockDetailPage = ({
   const [stockDetails, setStockDetails] = useState(null);
   const [watchlists, setWatchlists] = useState(null);
   const [selectedWatchlist, setSelectedWatchlist] = useState('');
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
   const fetchWatchlists = async () => {
@@ -32,6 +33,7 @@ const StockDetailPage = ({
     try {
       const foundStock = await getStockDetail(symbol);
       setStockDetails(foundStock['Global Quote']);
+      setSuccess(false);
     } catch (error) {
       setError(error);
     }
@@ -49,7 +51,9 @@ const StockDetailPage = ({
     e.preventDefault();
     try {
       await addStock(selectedWatchlist, symbol);
+      setSuccess(true);
     } catch (error) {
+      setSuccess(false);
       setError(error);
     }
   };
@@ -77,7 +81,10 @@ const StockDetailPage = ({
           <label>
             <select
               value={selectedWatchlist}
-              onChange={(e) => setSelectedWatchlist(e.target.value)}
+              onChange={(e) => {
+                setSuccess(false);
+                setSelectedWatchlist(e.target.value);
+              }}
               className="px-2 py-1"
             >
               {watchlists &&
@@ -94,6 +101,26 @@ const StockDetailPage = ({
           >
             Add to watchlist
           </button>
+          {success && (
+            <div
+              className="bg-green-100 border border-green-400 text-green-700 px-2 py-3 rounded relative"
+              role="alert"
+            >
+              Watchlist has been updated
+              <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg
+                  className="fill-current h-6 w-6 text-green-500"
+                  role="button"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  onClick={() => setSuccess(false)}
+                >
+                  <title>Close</title>
+                  <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                </svg>
+              </span>
+            </div>
+          )}
         </form>
         <ul>
           <li>Price: ${roundNumber(stockDetails['05. price'])}</li>
