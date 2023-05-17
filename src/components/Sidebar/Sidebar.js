@@ -97,13 +97,20 @@ function Sidebar({ user, setUser }) {
                             <div key={_id}>
                                 {editingId === _id ?
                                     (
-                                        <input
-                                            type='text'
-                                            value={watchlistName}
-                                            onChange={handleChange}
-                                            onBlur={() => handleFinishEditing(_id, watchlistName)}
-                                            autoFocus
-                                        />
+                                        <form
+                                            onSubmit={(e) => {
+                                                e.preventDefault();
+                                                handleFinishEditing(_id, watchlistName);
+                                            }}
+                                        >
+                                            <input
+                                                type="text"
+                                                value={watchlistName}
+                                                onChange={handleChange}
+                                                autoFocus
+                                            />
+                                            <button type="submit">Save</button>
+                                        </form>
                                     ) : (
                                         <div>
                                             <Link to={`/watchlists/${_id}`}>
@@ -118,9 +125,9 @@ function Sidebar({ user, setUser }) {
 
                         );
                     })}
-            </section>
+            </section >
             <button onClick={handleLogout}>Log Out</button>
-        </div>
+        </div >
     );
 }
 
