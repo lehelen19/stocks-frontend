@@ -60,10 +60,14 @@ function Sidebar({ user, setUser }) {
   };
 
   return (
-    <div className="user-sidebar">
-      <h1>Welcome, {user.username}!</h1>
+    <div className="bg-teal-500 p-5">
+      <h1 className="text-white font-bold text-2xl capitalize">
+        Welcome, {user.username}!
+      </h1>
 
-      <button onClick={handleClick}>Create new watchlist</button>
+      <button onClick={handleClick} className="text-white hover:underline">
+        Create new watchlist
+      </button>
       {showInput && (
         <form onSubmit={handleSubmit}>
           <input
@@ -75,7 +79,7 @@ function Sidebar({ user, setUser }) {
           <button>Submit</button>
         </form>
       )}
-      <nav className="bg-teal-500">
+      <nav>
         <h2>Watchlists</h2>
         {watchlists &&
           watchlists.map((watchlist) => {
