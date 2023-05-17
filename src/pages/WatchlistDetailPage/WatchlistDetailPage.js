@@ -24,17 +24,22 @@ const WatchlistDetailPage = ({ user, search, setSearch, handleSubmit }) => {
   }, [id]);
 
   return (
-    <>
-      <h3>Watchlist Details</h3>
-      {!!watchlistDetails &&
-        watchlistDetails.stocks.map((stock) => <p key={stock}>{stock}</p>)}
+    <div className="grid grid-cols-3">
       <Sidebar user={user} />
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-        handleSubmit={handleSubmit}
-      />
-    </>
+      <section className="col-span-2 flex flex-col justify-around bg-gray-300">
+        <h3>Watchlist Details</h3>
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          handleSubmit={handleSubmit}
+        />
+        <div>
+          Stocks in this watchlist
+          {!!watchlistDetails &&
+            watchlistDetails.stocks.map((stock) => <p key={stock}>{stock}</p>)}
+        </div>
+      </section>
+    </div>
   );
 };
 
