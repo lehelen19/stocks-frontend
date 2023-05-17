@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 function Sidebar({ user, setUser }) {
     const [watchlists, setWatchlists] = useState(null);
     const [watchlistName, setWatchlistName] = useState('');
+    const [editWatchlistName, setEditWatchlistName] = useState('');
     const [editingId, setEditingId] = useState(null);
     const [showInput, setShowInput] = useState(false);
     //   RENDER ERROR
@@ -39,6 +40,10 @@ function Sidebar({ user, setUser }) {
 
     const handleChange = (e) => {
         setWatchlistName(e.target.value);
+    };
+
+    const handleEditChange = (e) => {
+        setEditWatchlistName(e.target.value);
     };
 
     const handleSubmit = async (e) => {
@@ -103,13 +108,13 @@ function Sidebar({ user, setUser }) {
                                     <form
                                         onSubmit={(e) => {
                                             e.preventDefault();
-                                            handleFinishEditing(_id, watchlistName);
+                                            handleFinishEditing(_id, editWatchlistName);
                                         }}
                                     >
                                         <input
                                             type="text"
-                                            value={watchlistName}
-                                            onChange={handleChange}
+                                            value={editWatchlistName}
+                                            onChange={handleEditChange}
                                             autoFocus
                                         />
                                         <button type="submit">Save</button>
