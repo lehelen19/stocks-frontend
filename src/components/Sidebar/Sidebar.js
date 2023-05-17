@@ -118,14 +118,14 @@ function Sidebar({ user, setUser }) {
                     >
                       <p>{name}</p>
                     </Link>
-                    <button onClick={() => handleStartEditing(_id)}>
-                      Edit
-                    </button>
                     <button
-                      className=" rounded-md px-2  text-white bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                      className="mr-4 rounded-md px-2  text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                       onClick={() => handleDeleteWatchlist(_id)}
                     >
                       X
+                    </button>
+                    <button onClick={() => handleStartEditing(_id)}>
+                      Edit
                     </button>
                   </div>
                 )}
