@@ -98,19 +98,26 @@ function Sidebar({ user, setUser }) {
           watchlists.map((watchlist) => {
             const { name, _id } = watchlist;
             return (
-              <div>
+              <div key={_id}>
                 {editingId === _id ? (
-                  <input
-                    type="text"
-                    value={watchlistName}
-                    onChange={handleChange}
-                    onBlur={() => handleFinishEditing(_id, watchlistName)}
-                    autoFocus
-                  />
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      handleFinishEditing(_id, watchlistName);
+                    }}
+                  >
+                    <input
+                      type="text"
+                      value={watchlistName}
+                      onChange={handleChange}
+                      autoFocus
+                    />
+                    <button type="submit">Save</button>
+                  </form>
                 ) : (
                   <div
                     key={_id}
-                    className="flex mt-4 lg:mt-0 text-gray-100 text-lg cursor-pointer py-1"
+                    className="flex mt-4 lg:mt-0 text-gray-100 cursor-pointer py-1"
                   >
                     <Link
                       to={`/watchlists/${_id}`}
@@ -133,7 +140,6 @@ function Sidebar({ user, setUser }) {
             );
           })}
       </nav>
-
       <button onClick={handleLogout}>Log Out</button>
     </div>
   );
