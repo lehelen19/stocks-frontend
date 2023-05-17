@@ -5,7 +5,13 @@ import { getWatchlists, addStock } from '../../utilities/watchlists-service';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
-const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
+const StockDetailPage = ({
+  search,
+  setSearch,
+  handleSubmit,
+  user,
+  setUser,
+}) => {
   const [stockDetails, setStockDetails] = useState(null);
   const [watchlists, setWatchlists] = useState(null);
   const [selectedWatchlist, setSelectedWatchlist] = useState('');
@@ -84,8 +90,11 @@ const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
   };
 
   return (
-    <>
-      <Sidebar user={user} />
+    <div className="grid grid-cols-3">
+      <div>
+        <Sidebar user={user} setUser={setUser} />
+      </div>
+
       <SearchBar
         search={search}
         setSearch={setSearch}
@@ -93,7 +102,7 @@ const StockDetailPage = ({ search, setSearch, handleSubmit, user }) => {
       />
       {stockDetails ? loaded() : loading()}
       <p className="error-message">&nbsp;{error}</p>
-    </>
+    </div>
   );
 };
 
