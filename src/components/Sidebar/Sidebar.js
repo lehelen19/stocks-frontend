@@ -115,7 +115,7 @@ function Sidebar({ user, setUser }) {
                                         <button type="submit">Save</button>
                                     </form>
                                 ) : (
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col h-full justify-between">
                                         <div className="bg-teal-600 rounded-lg p-2 mt-5 lg:mt-5 text-gray-100 cursor-pointer">
                                             <Link
                                                 to={`/watchlists/${_id}`}
@@ -143,7 +143,7 @@ function Sidebar({ user, setUser }) {
             </nav>
             <div >
                 <button
-                    className="text-white hover:underline my-1 bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2"
+                    className="text-white hover:underline my-1 bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
                     onClick={handleLogout}>Log Out</button>
             </div>
 
