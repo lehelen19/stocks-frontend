@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { getWatchlistDetails } from '../../utilities/watchlists-service';
+import { getStockDetail } from '../../utilities/stocks-service';
 
 const WatchlistDetailPage = ({
   user,
@@ -12,6 +13,7 @@ const WatchlistDetailPage = ({
   setUser,
 }) => {
   const [watchlistDetails, setWatchlistDetails] = useState(null);
+  const [stocksDetails, setStocksDetails] = useState(null);
   const [error, setError] = useState('');
 
   const { id } = useParams();
@@ -29,6 +31,29 @@ const WatchlistDetailPage = ({
     fetchWatchlistDetails(id);
   }, [id]);
 
+  useEffect(() => {
+    const fetchStockDetails = async (symbol) => {
+      try {
+        const foundStock = await getStockDetail(symbol);
+        console.log(foundStock);
+        setStocksDetails((stocksDetails) => ({
+          ...stocksDetails,
+          [symbol]: foundStock['Global Quote'],
+        }));
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    if (watchlistDetails && watchlistDetails.stocks.length) {
+      watchlistDetails.stocks.forEach((symbol) => fetchStockDetails(symbol));
+    }
+  }, [watchlistDetails]);
+
+  const roundNumber = (str) => {
+    return Math.round((Number(str) + Number.EPSILON) * 100) / 100;
+  };
+
   return (
     <div className="grid grid-cols-3">
       <div>
@@ -40,16 +65,33 @@ const WatchlistDetailPage = ({
           setSearch={setSearch}
           handleSubmit={handleSubmit}
         />
-        <section>
-          <h3 className="text-teal-600 text-center m-4 text-xl">
-            <p>{error}</p>
+        <div>
+          {error && (
+            <h2 className="text-red-600 text-center m-4 text-xl">{error}</h2>
+          )}
+
+          <h2 className="text-teal-600 text-center m-4 text-xl capitalize">
             {!!watchlistDetails && watchlistDetails.name}
-          </h3>
-          {!!watchlistDetails &&
-            watchlistDetails.stocks.map((stock) => (
-              <article key={stock}>{stock}</article>
-            ))}
-        </section>
+          </h2>
+          <section>
+            {!!watchlistDetails &&
+              !!stocksDetails &&
+              watchlistDetails.stocks.map((stock) => (
+                <article key={stock}>
+                  <h3 className="uppercase">
+                    {stocksDetails[stock]['01. symbol']}
+                  </h3>
+                  <li>
+                    Price: ${roundNumber(stocksDetails[stock]['05. price'])}
+                  </li>
+                  <li>
+                    Change Percentage:{' '}
+                    {stocksDetails[stock]['10. change percent']}
+                  </li>
+                </article>
+              ))}
+          </section>
+        </div>
       </div>
     </div>
   );
