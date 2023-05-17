@@ -62,7 +62,7 @@ const StockDetailPage = ({
   const loaded = () => {
     return (
       <>
-        <h1>{stockDetails}</h1>
+        <h1 className="uppercase text-2xl my-5">{stockDetails}</h1>
         {/* <h1>{stockDetails['01. symbol']}</h1>
         <div>Price: ${stockDetails['02. open']}</div>
         <div>Volume: {stockDetails['06. volume']}</div>
@@ -74,6 +74,7 @@ const StockDetailPage = ({
             <select
               value={selectedWatchlist}
               onChange={(e) => setSelectedWatchlist(e.target.value)}
+              className="px-2 py-1"
             >
               {watchlists &&
                 watchlists?.map((watchlist) => (
@@ -83,7 +84,12 @@ const StockDetailPage = ({
                 ))}
             </select>
           </label>
-          <button type="submit">Add to watchlist</button>
+          <button
+            type="submit"
+            className="mx-2 bg-white hover:bg-gray-100 text-gray-800 px-2 py-1 border border-gray-400 rounded shadow"
+          >
+            Add to watchlist
+          </button>
         </form>
       </>
     );
@@ -95,7 +101,6 @@ const StockDetailPage = ({
         <Sidebar user={user} setUser={setUser} />
       </div>
       <section className="col-span-2  bg-gray-300">
-        <h1>Stock Detail Page</h1>
         <SearchBar
           search={search}
           setSearch={setSearch}
