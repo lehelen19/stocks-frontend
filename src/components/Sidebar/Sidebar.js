@@ -75,21 +75,30 @@ function Sidebar({ user, setUser }) {
           <button>Submit</button>
         </form>
       )}
-      <section>
+      <nav className="bg-teal-500">
         <h2>Watchlists</h2>
         {watchlists &&
           watchlists.map((watchlist) => {
             const { name, _id } = watchlist;
             return (
-              <div key={_id}>
-                <Link to={`/watchlists/${_id}`}>
+              <div key={_id} className="flex mt-4 lg:mt-0">
+                <Link
+                  to={`/watchlists/${_id}`}
+                  className="block lg:inline-block text-teal-200 hover:text-white mr-4"
+                >
                   <p>{name}</p>
                 </Link>
-                <button onClick={() => handleDeleteWatchlist(_id)}>X</button>
+                <button
+                  className=" rounded-md px-2  text-white bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                  onClick={() => handleDeleteWatchlist(_id)}
+                >
+                  X
+                </button>
               </div>
             );
           })}
-      </section>
+      </nav>
+
       <button onClick={handleLogout}>Log Out</button>
     </div>
   );
