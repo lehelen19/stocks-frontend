@@ -19,7 +19,7 @@ const SearchBar = ({ handleSubmit, search, setSearch, error }) => {
         </label>
         <button
           type="submit"
-          className="bg-white hover:bg-gray-100 text-gray-800 py-1 px-1 border border-gray-400 rounded shadow"
+          className="bg-white ml-2 hover:bg-gray-100 text-gray-800 py-1 px-1 border border-gray-400 rounded shadow"
         >
           Search
         </button>

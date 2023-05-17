@@ -55,11 +55,11 @@ const WatchlistDetailPage = ({
   };
 
   return (
-    <div className="grid grid-cols-3">
-      <div>
+    <div className="flex h-screen">
+      <div className="h-full" >
         <Sidebar user={user} setUser={setUser} />
       </div>
-      <div className="col-span-2 bg-teal-50">
+      <div className="flex-1 bg-teal-50">
         <SearchBar
           search={search}
           setSearch={setSearch}
