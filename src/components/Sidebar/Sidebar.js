@@ -74,9 +74,9 @@ function Sidebar({ user, setUser }) {
   };
   return (
     <div className="bg-teal-500 p-5">
-      <h1 className="text-white font-bold text-2xl capitalize">
+      <Link to="/" className="text-white font-bold text-2xl capitalize">
         Welcome, {user.username}!
-      </h1>
+      </Link>
 
       <button onClick={handleClick} className="text-white hover:underline my-1">
         Create new watchlist
