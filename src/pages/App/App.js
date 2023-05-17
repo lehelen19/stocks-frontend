@@ -43,6 +43,7 @@ function App() {
               element={
                 <StockDetailPage
                   user={user}
+                  setUser={setUser}
                   search={search}
                   setSearch={setSearch}
                   handleSubmit={handleSubmit}
@@ -54,6 +55,7 @@ function App() {
               element={
                 <WatchlistDetailPage
                   user={user}
+                  setUser={setUser}
                   search={search}
                   setSearch={setSearch}
                   handleSubmit={handleSubmit}

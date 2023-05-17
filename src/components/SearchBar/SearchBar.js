@@ -5,7 +5,6 @@ const SearchBar = ({ handleSubmit, search, setSearch, error }) => {
 
   return (
     <>
-      <p>Search Bar</p>
       <form onSubmit={handleSubmit}>
         <label>
           <input
@@ -14,9 +13,15 @@ const SearchBar = ({ handleSubmit, search, setSearch, error }) => {
             value={search}
             onChange={handleChange}
             required
+            className="border-2 border-stone-100 rounded-md shadow-md mr-2 ml-1 py-1 px-1"
           />
         </label>
-        <button type="submit">Search</button>
+        <button
+          type="submit"
+          className="bg-white hover:bg-gray-100 text-gray-800 py-1 px-1 border border-gray-400 rounded shadow"
+        >
+          Search
+        </button>
       </form>
     </>
   );

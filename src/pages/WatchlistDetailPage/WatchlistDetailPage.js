@@ -4,7 +4,13 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { getWatchlistDetails } from '../../utilities/watchlists-service';
 
-const WatchlistDetailPage = ({ user, search, setSearch, handleSubmit }) => {
+const WatchlistDetailPage = ({
+  user,
+  search,
+  setSearch,
+  handleSubmit,
+  setUser,
+}) => {
   const [watchlistDetails, setWatchlistDetails] = useState(null);
   const [error, setError] = useState('');
 
@@ -24,17 +30,27 @@ const WatchlistDetailPage = ({ user, search, setSearch, handleSubmit }) => {
   }, [id]);
 
   return (
-    <>
-      <h3>Watchlist Details</h3>
-      {!!watchlistDetails &&
-        watchlistDetails.stocks.map((stock) => <p key={stock}>{stock}</p>)}
-      <Sidebar user={user} />
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-        handleSubmit={handleSubmit}
-      />
-    </>
+    <div className="grid grid-cols-3">
+      <div>
+        <Sidebar user={user} setUser={setUser} />
+      </div>
+      <div className="col-span-2 bg-teal-50">
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          handleSubmit={handleSubmit}
+        />
+        <section>
+          <h3 className="text-teal-600 text-center m-4 text-xl">
+            {!!watchlistDetails && watchlistDetails.name}
+          </h3>
+          {!!watchlistDetails &&
+            watchlistDetails.stocks.map((stock) => (
+              <article key={stock}>{stock}</article>
+            ))}
+        </section>
+      </div>
+    </div>
   );
 };
 
