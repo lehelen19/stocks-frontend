@@ -78,7 +78,7 @@ function Sidebar({ user, setUser }) {
         Welcome, {user.username}!
       </h1>
 
-      <button onClick={handleClick} className="text-white hover:underline">
+      <button onClick={handleClick} className="text-white hover:underline my-1">
         Create new watchlist
       </button>
       {showInput && (
@@ -93,7 +93,7 @@ function Sidebar({ user, setUser }) {
         </form>
       )}
       <nav>
-        <h2>Watchlists</h2>
+        <h2 className="text-white font-semibold text-xl my-2">Watchlists</h2>
         {watchlists &&
           watchlists.map((watchlist) => {
             const { name, _id } = watchlist;
@@ -108,7 +108,10 @@ function Sidebar({ user, setUser }) {
                     autoFocus
                   />
                 ) : (
-                  <div key={_id} className="flex mt-4 lg:mt-0">
+                  <div
+                    key={_id}
+                    className="flex mt-4 lg:mt-0 text-gray-100 text-lg cursor-pointer py-1"
+                  >
                     <Link
                       to={`/watchlists/${_id}`}
                       className="block lg:inline-block text-teal-200 hover:text-white mr-4"
