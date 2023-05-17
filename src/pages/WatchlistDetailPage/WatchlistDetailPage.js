@@ -93,7 +93,7 @@ const WatchlistDetailPage = ({
                     </article>
                   );
                 } else {
-                  return <p>{stock.name}</p>;
+                  return <p key={stock}>{stock.name}</p>;
                 }
               })}
           </section>
