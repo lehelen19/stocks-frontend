@@ -5,13 +5,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import { getWatchlistDetails } from '../../utilities/watchlists-service';
 import { getStockDetail } from '../../utilities/stocks-service';
 
-const WatchlistDetailPage = ({
-  user,
-  search,
-  setSearch,
-  handleSubmit,
-  setUser,
-}) => {
+const WatchlistDetailPage = ({ user, setUser }) => {
   const [watchlistDetails, setWatchlistDetails] = useState(null);
   const [stocksDetails, setStocksDetails] = useState(null);
   const [error, setError] = useState('');
@@ -60,11 +54,7 @@ const WatchlistDetailPage = ({
         <Sidebar user={user} setUser={setUser} />
       </div>
       <div className="flex-1 bg-teal-50">
-        <SearchBar
-          search={search}
-          setSearch={setSearch}
-          handleSubmit={handleSubmit}
-        />
+        <SearchBar />
         <div>
           {error && (
             <h2 className="text-red-600 text-center m-4 text-xl">{error}</h2>
