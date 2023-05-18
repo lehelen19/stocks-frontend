@@ -26,6 +26,8 @@ const WatchlistDetailPage = ({ user, setUser }) => {
   }, [id]);
 
   useEffect(() => {
+    let ignore = false;
+
     const fetchStockDetails = async (symbol) => {
       try {
         const foundStock = await getStockDetail(symbol);
@@ -39,9 +41,13 @@ const WatchlistDetailPage = ({ user, setUser }) => {
       }
     };
 
-    if (watchlistDetails && watchlistDetails.stocks.length) {
+    if (watchlistDetails && watchlistDetails.stocks.length && !ignore) {
       watchlistDetails.stocks.forEach((symbol) => fetchStockDetails(symbol));
     }
+
+    return () => {
+      ignore = true;
+    };
   }, [watchlistDetails]);
 
   const roundNumber = (str) => {
