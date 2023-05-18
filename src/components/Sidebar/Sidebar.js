@@ -11,8 +11,10 @@ import { Link } from 'react-router-dom';
 function Sidebar({ user, setUser }) {
   const [watchlists, setWatchlists] = useState(null);
   const [watchlistName, setWatchlistName] = useState('');
+  const [editWatchlistName, setEditWatchlistName] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [showInput, setShowInput] = useState(false);
+  //   RENDER ERROR
   const [error, setError] = useState('');
 
   const fetchWatchlists = async () => {
@@ -40,6 +42,10 @@ function Sidebar({ user, setUser }) {
     setWatchlistName(e.target.value);
   };
 
+  const handleEditChange = (e) => {
+    setEditWatchlistName(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -62,7 +68,6 @@ function Sidebar({ user, setUser }) {
   const handleStartEditing = async (id, newName) => {
     setEditingId(id);
   };
-
   const handleFinishEditing = async (id, newName) => {
     try {
       await updateWatchlistName(id, newName);
@@ -88,16 +93,22 @@ function Sidebar({ user, setUser }) {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  handleFinishEditing(_id, watchlistName);
+                  handleFinishEditing(_id, editWatchlistName);
                 }}
               >
                 <input
+                  className="rounded-md"
                   type="text"
-                  value={watchlistName}
-                  onChange={handleChange}
+                  value={editWatchlistName}
+                  onChange={handleEditChange}
                   autoFocus
                 />
-                <button type="submit">Save</button>
+                <button
+                  className="rounded-md px-2 py-1  ml-2 bg-teal-600 hover:bg-teal-700 text-white"
+                  type="submit"
+                >
+                  Save
+                </button>
               </form>
             ) : (
               <div className="flex flex-col h-full justify-between">
@@ -110,13 +121,13 @@ function Sidebar({ user, setUser }) {
                   </Link>
                   <div className="flex justify-end">
                     <button
-                      className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                      className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
                       onClick={() => handleStartEditing(_id)}
                     >
                       Edit
                     </button>
                     <button
-                      className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                      className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
                       onClick={() => handleDeleteWatchlist(_id)}
                     >
                       X
@@ -130,43 +141,44 @@ function Sidebar({ user, setUser }) {
       })
     );
   };
-
   return (
-    <div className="bg-teal-500 py-4 px-8 h-full rounded-r-sm">
+    <div className="bg-teal-500 p-6 h-full">
       <Link to="/" className="text-white font-bold text-2xl capitalize">
         Welcome, {user.username}!
       </Link>
-      <div>
-        <button
-          onClick={handleClick}
-          className="text-white hover:underline my-1"
-        >
-          Create new watchlist
-        </button>
-      </div>
+
+      <button
+        onClick={handleClick}
+        className="bg-teal-400 px-1 rounded-md flex mt-4 text-white-100 hover: my-1 text-white"
+      >
+        Create new watchlist
+      </button>
       {showInput && (
         <form onSubmit={handleSubmit}>
           <input
+            className="rounded-md"
             type="text"
             value={watchlistName}
             onChange={handleChange}
             placeholder="New watchlist name..."
           />
-          <button>Submit</button>
+          <button className="text-white px-1 ml-2 rounded-md bg-teal-600">
+            Submit
+          </button>
         </form>
       )}
       <nav>
-        <h2 className="text-white font-semibold text-xl mt-2">Watchlists</h2>
-        {watchlists ? loaded() : loading()}
+        <h2 className="text-white font-semibold text-xl my-2">Watchlists</h2>
+
+        <div>
+          <button
+            className="text-white h-full my-1 hover:underline bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
+            onClick={handleLogout}
+          >
+            Log Out
+          </button>
+        </div>
       </nav>
-      <div>
-        <button
-          className="text-white hover:underline my-1 bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
-          onClick={handleLogout}
-        >
-          Log Out
-        </button>
-      </div>
     </div>
   );
 }
