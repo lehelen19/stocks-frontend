@@ -50,7 +50,6 @@ const StockDetailPage = ({ user, setUser }) => {
   const handleAddStockSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(selectedWatchlist, symbol);
       await addStock(selectedWatchlist, symbol);
       setSuccess(true);
     } catch {
@@ -83,7 +82,7 @@ const StockDetailPage = ({ user, setUser }) => {
     }
     return (
       <>
-        <div className="my-5 mx-5 grid grid-cols-2 gap-4">
+        <div className="my-4 mx-5 grid grid-cols-2 gap-4">
           <div className="my-5 py-2 px-4 bg-stone-200 rounded-md text-center">
             <h2 className="uppercase text-2xl my-2 tracking-wide block">
               {stockDetails['01. symbol']}
@@ -136,7 +135,7 @@ const StockDetailPage = ({ user, setUser }) => {
                 setSuccess(false);
                 setSelectedWatchlist(e.target.value);
               }}
-              className="px-2 py-1"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-teal-500 focus:border-teal-500 px-2 py-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
             >
               <option value="" disabled="disabled"></option>
               {watchlists &&
@@ -149,7 +148,7 @@ const StockDetailPage = ({ user, setUser }) => {
           </label>
           <button
             type="submit"
-            className="mx-2 bg-white hover:bg-gray-100 text-gray-800 px-2 py-1 border border-gray-400 rounded shadow"
+            className="mx-2 text-sm bg-white hover:bg-gray-100 text-gray-800 px-2 py-1.5 border border-gray-400 rounded-sm shadow"
           >
             Add to watchlist
           </button>
