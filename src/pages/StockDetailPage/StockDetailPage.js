@@ -137,7 +137,9 @@ const StockDetailPage = ({ user, setUser }) => {
               }}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-teal-500 focus:border-teal-500 px-2 py-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500"
             >
-              <option value="" disabled="disabled"></option>
+              <option value="" disabled="disabled">
+                select a watchlist...
+              </option>
               {watchlists &&
                 watchlists?.map((watchlist) => (
                   <option value={watchlist._id} key={watchlist._id}>
