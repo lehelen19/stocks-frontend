@@ -81,7 +81,7 @@ const StockDetailPage = ({
     }
     return (
       <>
-        <div className="">
+        <div>
           <h2 className="uppercase text-2xl my-5">
             {stockDetails['01. symbol']}
           </h2>
@@ -150,17 +150,17 @@ const StockDetailPage = ({
               </div>
             )}
           </form>
-          <div className="flex">
-            <div className="w-1/2">
-              <ul>
+          <div className="flex bg-blue-300 rounded-md ml-2 mr-2 px-2 py-1 ">
+            <div className="w-1/2 h-full ">
+              <ul className='text-white h-full' >
                 <li>Price: ${roundNumber(stockDetails['05. price'])}</li>
                 <li>Open: ${roundNumber(stockDetails['02. open'])}</li>
                 <li>High: ${roundNumber(stockDetails['03. high'])}</li>
                 <li>Low: ${roundNumber(stockDetails['04. low'])}</li>
               </ul>
             </div>
-            <div className="w-1/2">
-              <ul>
+            <div className="w-1/2 h-full">
+              <ul className='text-white h-full' >
                 <li>
                   Latest Trading Day:{' '}
                   {displayDate(stockDetails['07. latest trading day'])}
@@ -184,7 +184,7 @@ const StockDetailPage = ({
       <div className="h-full">
         <Sidebar user={user} setUser={setUser} />
       </div>
-      <section className="flex-1 bg-teal-50">
+      <section className="flex-1 bg-teal-50 h-full">
         <SearchBar
           search={search}
           setSearch={setSearch}
