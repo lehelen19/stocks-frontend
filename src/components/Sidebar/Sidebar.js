@@ -83,7 +83,7 @@ function Sidebar({ user, setUser }) {
                 Welcome, {user.username}!
             </Link>
 
-            <button onClick={handleClick} className="bg-emerald-500 px-1 rounded-md flex mt-4 text-gray-100 hover:underline my-1 text-gray-500">
+            <button onClick={handleClick} className="bg-teal-400 px-1 rounded-md flex mt-4 text-white-100 hover: my-1 text-white">
                 Create new watchlist
             </button>
             {showInput && (
