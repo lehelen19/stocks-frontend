@@ -21,9 +21,15 @@ const StockDetailPage = ({ user, setUser }) => {
     }
   };
 
+  useEffect(() => {
+    fetchWatchlists();
+  }, []);
+
   const { symbol } = useParams();
 
   useEffect(() => {
+    let ignore = false;
+
     const fetchStockDetails = async () => {
       try {
         const foundStock = await getStockDetail(symbol);
@@ -33,12 +39,13 @@ const StockDetailPage = ({ user, setUser }) => {
         setError({ detail: 'Stock details could not be fetched.' });
       }
     };
-    fetchStockDetails();
-  }, [symbol]);
 
-  useEffect(() => {
-    fetchWatchlists();
-  }, []);
+    if (!ignore) fetchStockDetails();
+
+    return () => {
+      ignore = true;
+    };
+  }, [symbol]);
 
   const handleAddStockSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +59,7 @@ const StockDetailPage = ({ user, setUser }) => {
   };
 
   const loading = () => {
-    return <h2>Loading...</h2>;
+    return <h2 className="text-white m-4">Loading...</h2>;
   };
 
   const roundNumber = (str) => {
@@ -75,7 +82,7 @@ const StockDetailPage = ({ user, setUser }) => {
     }
     return (
       <>
-        <div>
+        <div className="my-4">
           <h2 className="uppercase text-2xl my-5">
             {stockDetails['01. symbol']}
           </h2>
@@ -146,7 +153,7 @@ const StockDetailPage = ({ user, setUser }) => {
           </form>
           <div className="flex bg-blue-300 rounded-md ml-2 mr-2 px-2 py-1 ">
             <div className="w-1/2 h-full ">
-              <ul className='text-white h-full' >
+              <ul className="text-white h-full">
                 <li>Price: ${roundNumber(stockDetails['05. price'])}</li>
                 <li>Open: ${roundNumber(stockDetails['02. open'])}</li>
                 <li>High: ${roundNumber(stockDetails['03. high'])}</li>
@@ -154,7 +161,7 @@ const StockDetailPage = ({ user, setUser }) => {
               </ul>
             </div>
             <div className="w-1/2 h-full">
-              <ul className='text-white h-full' >
+              <ul className="text-white h-full">
                 <li>
                   Latest Trading Day:{' '}
                   {displayDate(stockDetails['07. latest trading day'])}

@@ -1,82 +1,88 @@
 import React, { useEffect, useState } from 'react';
 import {
-    getWatchlists,
-    createWatchlist,
-    deleteWatchlist,
-    updateWatchlistName,
+  getWatchlists,
+  createWatchlist,
+  deleteWatchlist,
+  updateWatchlistName,
 } from '../../utilities/watchlists-service';
 import { logOut } from '../../utilities/users-service';
 import { Link } from 'react-router-dom';
 
 function Sidebar({ user, setUser }) {
-    const [watchlists, setWatchlists] = useState(null);
-    const [watchlistName, setWatchlistName] = useState('');
-    const [editWatchlistName, setEditWatchlistName] = useState('');
-    const [editingId, setEditingId] = useState(null);
-    const [showInput, setShowInput] = useState(false);
-    //   RENDER ERROR
-    const [error, setError] = useState('');
+  const [watchlists, setWatchlists] = useState(null);
+  const [watchlistName, setWatchlistName] = useState('');
+  const [editWatchlistName, setEditWatchlistName] = useState('');
+  const [editingId, setEditingId] = useState(null);
+  const [showInput, setShowInput] = useState(false);
+  //   RENDER ERROR
+  const [error, setError] = useState('');
 
-    const fetchWatchlists = async () => {
-        try {
-            const foundWatchlists = await getWatchlists();
-            setWatchlists(foundWatchlists);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  const fetchWatchlists = async () => {
+    try {
+      const foundWatchlists = await getWatchlists();
+      setWatchlists(foundWatchlists);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    const handleLogout = () => {
-        logOut();
-        setUser(null);
-    };
+  const handleLogout = () => {
+    logOut();
+    setUser(null);
+  };
 
-    useEffect(() => {
-        fetchWatchlists();
-    }, []);
-    const handleClick = () => {
-        setShowInput(!showInput);
-    };
+  useEffect(() => {
+    fetchWatchlists();
+  }, []);
+  const handleClick = () => {
+    setShowInput(!showInput);
+  };
 
-    const handleChange = (e) => {
-        setWatchlistName(e.target.value);
-    };
+  const handleChange = (e) => {
+    setWatchlistName(e.target.value);
+  };
 
-    const handleEditChange = (e) => {
-        setEditWatchlistName(e.target.value);
-    };
+  const handleEditChange = (e) => {
+    setEditWatchlistName(e.target.value);
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await createWatchlist(watchlistName);
-            setWatchlistName('');
-            fetchWatchlists();
-        } catch (err) {
-            setError('New watchlist creation failed - try again');
-        }
-    };
-    const handleDeleteWatchlist = async (_id) => {
-        try {
-            await deleteWatchlist(_id);
-            fetchWatchlists();
-        } catch (error) {
-            setError('Failed to delete watchlist.');
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await createWatchlist(watchlistName);
+      setWatchlistName('');
+      fetchWatchlists();
+    } catch (err) {
+      setError('New watchlist creation failed - try again');
+    }
+  };
+  const handleDeleteWatchlist = async (_id) => {
+    try {
+      await deleteWatchlist(_id);
+      fetchWatchlists();
+    } catch (error) {
+      setError('Failed to delete watchlist.');
+    }
+  };
 
-    const handleStartEditing = async (id, newName) => {
-        setEditingId(id);
-    };
-    const handleFinishEditing = async (id, newName) => {
-        try {
-            await updateWatchlistName(id, newName);
-            setEditingId(null);
-            fetchWatchlists();
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  const handleStartEditing = async (id, newName) => {
+    setEditingId(id);
+  };
+  const handleFinishEditing = async (id, newName) => {
+    try {
+      await updateWatchlistName(id, newName);
+      setEditingId(null);
+      fetchWatchlists();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const loading = () => {
+    return <p className="text-white">Loading watchlists...</p>;
+  };
+
+  const loaded = () => {
     return (
         <div className="bg-teal-500 p-6 h-screen flex flex-col justify-between ">
             <Link to="/" className="text-white font-bold text-2xl capitalize">

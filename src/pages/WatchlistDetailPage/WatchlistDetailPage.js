@@ -10,26 +10,33 @@ const WatchlistDetailPage = ({ user, setUser }) => {
   const [stocksDetails, setStocksDetails] = useState(null);
   const [error, setError] = useState('');
 
-  const { id } = useParams();
-
-  const fetchWatchlistDetails = async (id) => {
-    try {
-      const foundWatchlist = await getWatchlistDetails(id);
-      setWatchlistDetails(foundWatchlist);
-    } catch {
-      setError('Watchlist could not be found.');
-    }
-  };
+  let { id } = useParams();
 
   useEffect(() => {
-    fetchWatchlistDetails(id);
+    let ignore = false;
+
+    const fetchWatchlistDetails = async (id) => {
+      try {
+        const foundWatchlist = await getWatchlistDetails(id);
+        setWatchlistDetails(foundWatchlist);
+      } catch {
+        setError('Watchlist could not be found.');
+      }
+    };
+
+    if (!ignore) fetchWatchlistDetails(id);
+
+    return () => {
+      ignore = true;
+    };
   }, [id]);
 
   useEffect(() => {
+    let ignore = false;
+
     const fetchStockDetails = async (symbol) => {
       try {
         const foundStock = await getStockDetail(symbol);
-        console.log(foundStock);
         setStocksDetails((stocksDetails) => ({
           ...stocksDetails,
           [symbol]: foundStock['Global Quote'],
@@ -39,12 +46,17 @@ const WatchlistDetailPage = ({ user, setUser }) => {
       }
     };
 
-    if (watchlistDetails && watchlistDetails.stocks.length) {
+    if (watchlistDetails && watchlistDetails.stocks.length && !ignore) {
       watchlistDetails.stocks.forEach((symbol) => fetchStockDetails(symbol));
     }
+
+    return () => {
+      ignore = true;
+    };
   }, [watchlistDetails]);
 
   const roundNumber = (str) => {
+    str = str.replace('%', '');
     return Math.round((Number(str) + Number.EPSILON) * 100) / 100;
   };
 
@@ -60,7 +72,7 @@ const WatchlistDetailPage = ({ user, setUser }) => {
             <h2 className="text-red-600 text-center m-4 text-xl">{error}</h2>
           )}
 
-          <h2 className="text-teal-600 text-center m-4 text-xl capitalize">
+          <h2 className="text-teal-600 text-center m-4 text-xl font-bold tracking-wide block">
             {!!watchlistDetails && watchlistDetails.name}
           </h2>
           <section>
@@ -70,22 +82,39 @@ const WatchlistDetailPage = ({ user, setUser }) => {
                 if (stocksDetails[stock]) {
                   return (
                     <article
-                      className='flex flex-col border-t border-b border-gray-200 py-2'
-                      key={stock}>
+                      className="flex flex-col border-t border-b border-gray-200 py-2"
+                      key={stock}
+                    >
                       <div className="grid grid-cols-3 gap-4">
                         <h3>
                           <Link
-                            className="uppercase ml-4 col-span-1 font-bold cursor-pointer text-teal-600 hover:underline hover:italic"
+                            className="uppercase ml-4 col-span-1 font-semibold cursor-pointer text-teal-600 hover:underline hover:italic"
                             to={`/stocks/${stock}`}
                           >
                             {stocksDetails[stock]['01. symbol']}
                           </Link>
                         </h3>
                         <p className="col-span-1 text-gray-700">
-                          Price: ${roundNumber(stocksDetails[stock]['05. price'])}
+                          ${roundNumber(stocksDetails[stock]['05. price'])}
                         </p>
                         <p className="col-span-1 text-gray-700">
-                          Change(%): {stocksDetails[stock]['10. change percent']}
+                          {stocksDetails[stock]['10. change percent'] < 0 ? (
+                            <span className="text-red-600">
+                              -
+                              {roundNumber(
+                                stocksDetails[stock]['10. change percent']
+                              )}
+                              %
+                            </span>
+                          ) : (
+                            <span className="text-green-600">
+                              +
+                              {roundNumber(
+                                stocksDetails[stock]['10. change percent']
+                              )}
+                              %
+                            </span>
+                          )}
                         </p>
                       </div>
                     </article>

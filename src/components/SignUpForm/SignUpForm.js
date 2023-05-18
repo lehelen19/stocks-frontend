@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Navigate } from 'react-router-dom';
 import { signUp } from '../../utilities/users-service';
 
 export default class SignUpForm extends Component {
@@ -27,6 +28,7 @@ export default class SignUpForm extends Component {
       const user = await signUp(formData);
 
       this.props.setUser(user);
+      return <Navigate to="/stocks/ADBE" />;
     } catch {
       this.setState({ error: 'Sign Up Failed - Try Again' });
     }
@@ -95,7 +97,7 @@ export default class SignUpForm extends Component {
               htmlFor="confirm"
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             >
-              Confirm
+              Confirm Password
             </label>
             <input
               type="password"
