@@ -25,25 +25,52 @@ export default function LoginForm({ setUser }) {
 
   return (
     <div>
-      <div className="form-container">
-        <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>Username</label>
+      <div className="flex justify-center">
+        <form
+          autoComplete="off"
+          onSubmit={handleSubmit}
+          className="w-full max-w-sm flex flex-col p-10"
+        >
+          <h1 className="block uppercase tracking-wide font-bold">
+            Welcome back
+          </h1>
+          <hr className="m-2" />
+          <label
+            htmlFor="username"
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          >
+            Username
+          </label>
           <input
             type="text"
             name="username"
             value={credentials.username}
             onChange={handleChange}
             required
+            id="username"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
-          <label>Password</label>
+          <label
+            htmlFor="password"
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          >
+            Password
+          </label>
           <input
             type="password"
             name="password"
             value={credentials.password}
             onChange={handleChange}
             required
+            id="password"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
-          <button type="submit">LOG IN</button>
+          <button
+            type="submit"
+            className="block uppercase tracking-wide text-gray-700 m-5 border-2 p-1"
+          >
+            LOG IN
+          </button>
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>
