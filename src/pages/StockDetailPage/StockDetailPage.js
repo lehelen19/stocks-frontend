@@ -5,13 +5,7 @@ import { getWatchlists, addStock } from '../../utilities/watchlists-service';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
-const StockDetailPage = ({
-  search,
-  setSearch,
-  handleSubmit,
-  user,
-  setUser,
-}) => {
+const StockDetailPage = ({ user, setUser }) => {
   const [stockDetails, setStockDetails] = useState(null);
   const [watchlists, setWatchlists] = useState(null);
   const [selectedWatchlist, setSelectedWatchlist] = useState('');
@@ -185,11 +179,7 @@ const StockDetailPage = ({
         <Sidebar user={user} setUser={setUser} />
       </div>
       <section className="flex-1 bg-teal-50 h-full">
-        <SearchBar
-          search={search}
-          setSearch={setSearch}
-          handleSubmit={handleSubmit}
-        />
+        <SearchBar />
         <div>{stockDetails ? loaded() : loading()}</div>
       </section>
     </div>
