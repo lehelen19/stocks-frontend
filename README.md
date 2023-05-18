@@ -44,6 +44,6 @@ Do you have trouble keeping track of the stocks you want to monitor? **Stockopol
 ## Resources
 
 - [Alpha Vantage API](https://www.alphavantage.co/documentation/)
-- [Tailwind CSS form examples](https://v1.tailwindcss.com/components/forms)
+- [Tailwind CSS components](https://v1.tailwindcss.com/components)
 
 Feel free to submit a pull request if you would like to suggest any changes!
