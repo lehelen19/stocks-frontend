@@ -142,7 +142,7 @@ function Sidebar({ user, setUser }) {
     );
   };
   return (
-    <div className="bg-teal-500 p-6 h-full">
+    <div className="bg-teal-500 p-6 min-h-screen">
       <Link to="/" className="text-white font-bold text-2xl capitalize">
         Welcome, {user.username}!
       </Link>
@@ -167,12 +167,12 @@ function Sidebar({ user, setUser }) {
           </button>
         </form>
       )}
-      <nav>
+      <nav >
         <h2 className="text-white font-semibold text-xl my-2">Watchlists</h2>
         {watchlists ? loaded() : loading()}
-        <div>
+        <div className='absolute bottom-5' >
           <button
-            className="text-white h-full my-1 hover:underline bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
+            className="text-white bottom-0 hover:underline bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
             onClick={handleLogout}
           >
             Log Out

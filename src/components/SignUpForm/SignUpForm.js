@@ -38,6 +38,7 @@ export default class SignUpForm extends Component {
     const disabled = this.state.password !== this.state.confirm;
     return (
       <div>
+        <h1 className="text-3xl font-bold text-center">PortfolioPal</h1>
         <div className="flex justify-center">
           <form
             autoComplete="off"
