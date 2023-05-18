@@ -111,29 +111,20 @@ const StockDetailPage = ({ user, setUser }) => {
               <p>${roundNumber(stockDetails['02. open'])}</p>
             </div>
           </div>
+          <div className="col-span-2 py-2 px-4 bg-stone-200 rounded-md text-center">
+            <h3 className="text-xl mb-2">Details</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <p>Latest Trading Day</p>
+              <p>{displayDate(stockDetails['07. latest trading day'])}</p>
 
-          <div className="flex bg-blue-300 rounded-md ml-2 mr-2 px-2 py-1 ">
-            <div className="w-1/2 h-full ">
-              <ul className="text-white h-full">
-                <li>Price: ${roundNumber(stockDetails['05. price'])}</li>
-                <li>Open: ${roundNumber(stockDetails['02. open'])}</li>
-                <li>High: ${roundNumber(stockDetails['03. high'])}</li>
-                <li>Low: ${roundNumber(stockDetails['04. low'])}</li>
-              </ul>
-            </div>
-            <div className="w-1/2 h-full">
-              <ul className="text-white h-full">
-                <li>
-                  Latest Trading Day:{' '}
-                  {displayDate(stockDetails['07. latest trading day'])}
-                </li>
-                <li>
-                  Previous Close: $
-                  {roundNumber(stockDetails['08. previous close'])}
-                </li>
-                <li>Volume: {stockDetails['06. volume']}</li>
-                <li>Change Percent: {stockDetails['10. change percent']}</li>
-              </ul>
+              <p>High</p>
+              <p>${roundNumber(stockDetails['03. high'])}</p>
+
+              <p>Low</p>
+              <p>${roundNumber(stockDetails['04. low'])}</p>
+
+              <p>Volume</p>
+              <p>{stockDetails['06. volume']}</p>
             </div>
           </div>
         </div>
