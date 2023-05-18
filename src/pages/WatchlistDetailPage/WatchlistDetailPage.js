@@ -69,26 +69,26 @@ const WatchlistDetailPage = ({ user, setUser }) => {
               watchlistDetails.stocks.map((stock) => {
                 if (stocksDetails[stock]) {
                   return (
-                    <article 
-                    className='flex flex-col border-t border-b border-gray-200 py-2'
-                    key={stock}>
+                    <article
+                      className='flex flex-col border-t border-b border-gray-200 py-2'
+                      key={stock}>
                       <div className="grid grid-cols-3 gap-4">
-                      <h3>
-                        <Link
-                          className="uppercase ml-4 col-span-1 font-bold cursor-pointer text-teal-600 hover:underline hover:italic"
-                          to={`/stocks/${stock}`}
-                        >
-                          {stocksDetails[stock]['01. symbol']}
-                        </Link>
-                      </h3>
-                      <p className="col-span-1 text-gray-700">
-                        Price: ${roundNumber(stocksDetails[stock]['05. price'])}
-                      </p>
-                      <p className="col-span-1 text-gray-700">
-                        Change(%): {stocksDetails[stock]['10. change percent']}
-                      </p>
-                    </div>
-                  </article>
+                        <h3>
+                          <Link
+                            className="uppercase ml-4 col-span-1 font-bold cursor-pointer text-teal-600 hover:underline hover:italic"
+                            to={`/stocks/${stock}`}
+                          >
+                            {stocksDetails[stock]['01. symbol']}
+                          </Link>
+                        </h3>
+                        <p className="col-span-1 text-gray-700">
+                          Price: ${roundNumber(stocksDetails[stock]['05. price'])}
+                        </p>
+                        <p className="col-span-1 text-gray-700">
+                          Change(%): {stocksDetails[stock]['10. change percent']}
+                        </p>
+                      </div>
+                    </article>
                   );
                 } else {
                   return <p key={stock}>{stock.name}</p>;
