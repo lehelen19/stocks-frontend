@@ -10,7 +10,7 @@ const WatchlistDetailPage = ({ user, setUser }) => {
   const [stocksDetails, setStocksDetails] = useState(null);
   const [error, setError] = useState('');
 
-  const { id } = useParams();
+  let { id } = useParams();
 
   useEffect(() => {
     let ignore = false;
@@ -37,7 +37,6 @@ const WatchlistDetailPage = ({ user, setUser }) => {
     const fetchStockDetails = async (symbol) => {
       try {
         const foundStock = await getStockDetail(symbol);
-        console.log(foundStock);
         setStocksDetails((stocksDetails) => ({
           ...stocksDetails,
           [symbol]: foundStock['Global Quote'],

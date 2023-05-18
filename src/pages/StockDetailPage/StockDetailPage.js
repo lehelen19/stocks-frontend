@@ -33,7 +33,6 @@ const StockDetailPage = ({ user, setUser }) => {
     const fetchStockDetails = async () => {
       try {
         const foundStock = await getStockDetail(symbol);
-        console.log(foundStock);
         setStockDetails(foundStock['Global Quote']);
         setSuccess(false);
       } catch {
@@ -83,7 +82,7 @@ const StockDetailPage = ({ user, setUser }) => {
     }
     return (
       <>
-        <div>
+        <div className="my-4">
           <h2 className="uppercase text-2xl my-5">
             {stockDetails['01. symbol']}
           </h2>
