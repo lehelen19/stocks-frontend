@@ -84,7 +84,7 @@ const StockDetailPage = ({ user, setUser }) => {
     return (
       <>
         <div className="my-5 mx-5 grid grid-cols-2 gap-4">
-          <div className="my-5 py-2 px-4 bg-stone-200 rounded-md">
+          <div className="my-5 py-2 px-4 bg-stone-200 rounded-md text-center">
             <h2 className="uppercase text-2xl my-2 tracking-wide block">
               {stockDetails['01. symbol']}
             </h2>
