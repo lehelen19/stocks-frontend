@@ -64,7 +64,7 @@ const StockDetailPage = ({ user, setUser }) => {
 
   const roundNumber = (str) => {
     str = str.replace('%', '');
-    return Math.round((Number(str) + Number.EPSILON) * 100) / 100;
+    return (Math.round((Number(str) + Number.EPSILON) * 100) / 100).toFixed(2);
   };
 
   const displayDate = (str) => {
@@ -83,9 +83,9 @@ const StockDetailPage = ({ user, setUser }) => {
     }
     return (
       <>
-        <div className="my-5 mx-5 grid grid-cols-2">
+        <div className="my-5 mx-5 grid grid-cols-2 gap-4">
           <div className="my-5 py-2 px-4 bg-stone-200 rounded-md">
-            <h2 className="uppercase text-2xl my-2">
+            <h2 className="uppercase text-2xl my-2 tracking-wide block">
               {stockDetails['01. symbol']}
             </h2>
             <p className="text-xl">${roundNumber(stockDetails['05. price'])}</p>
@@ -101,14 +101,15 @@ const StockDetailPage = ({ user, setUser }) => {
               )}
             </p>
           </div>
-          <div className="my-5 py-2 px-4 bg-stone-200 rounded-md">
-            <p>
-              Previous Close:{' '}
-              <span>${roundNumber(stockDetails['08. previous close'])}</span>
-            </p>
-            <p>
-              Open: <span>${roundNumber(stockDetails['02. open'])}</span>
-            </p>
+          <div className="my-5 py-2 px-4 bg-stone-200 rounded-md grid grid-cols-2 text-center">
+            <div className="flex flex-col justify-evenly">
+              <p className="text-sm font-medium">Previous Close</p>
+              <p>${roundNumber(stockDetails['08. previous close'])}</p>
+            </div>
+            <div className="flex flex-col justify-evenly">
+              <p className="text-sm font-medium">Open</p>
+              <p>${roundNumber(stockDetails['02. open'])}</p>
+            </div>
           </div>
 
           <div className="flex bg-blue-300 rounded-md ml-2 mr-2 px-2 py-1 ">
