@@ -57,7 +57,7 @@ const WatchlistDetailPage = ({ user, setUser }) => {
 
   const roundNumber = (str) => {
     str = str.replace('%', '');
-    return Math.round((Number(str) + Number.EPSILON) * 100) / 100;
+    return (Math.round((Number(str) + Number.EPSILON) * 100) / 100).toFixed(2);
   };
 
   return (
