@@ -50,11 +50,12 @@ const StockDetailPage = ({ user, setUser }) => {
   const handleAddStockSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(selectedWatchlist, symbol);
       await addStock(selectedWatchlist, symbol);
       setSuccess(true);
     } catch {
       setSuccess(false);
-      setError({ stock: 'Stock is already in the watchlist.' });
+      setError({ stock: 'Stock could not be added to the watchlist.' });
     }
   };
 
@@ -75,9 +76,8 @@ const StockDetailPage = ({ user, setUser }) => {
   const loaded = () => {
     if (Object.keys(stockDetails).length === 0) {
       return (
-        <p className="text-lg m-2">
-          Stock could not be found. Make sure you inputted a valid ticker
-          symbol.
+        <p className="text-lg mx-2 my-5">
+          Stock could not be found! Make sure the ticker symbol is valid.
         </p>
       );
     }
@@ -111,33 +111,24 @@ const StockDetailPage = ({ user, setUser }) => {
               <p>${roundNumber(stockDetails['02. open'])}</p>
             </div>
           </div>
+          <div className="col-span-2 py-2 px-4 bg-stone-200 rounded-md text-center">
+            <h3 className="text-xl mb-2">Details</h3>
+            <div className="grid grid-cols-2 gap-2">
+              <p>Latest Trading Day</p>
+              <p>{displayDate(stockDetails['07. latest trading day'])}</p>
 
-          <div className="flex bg-blue-300 rounded-md ml-2 mr-2 px-2 py-1 ">
-            <div className="w-1/2 h-full ">
-              <ul className="text-white h-full">
-                <li>Price: ${roundNumber(stockDetails['05. price'])}</li>
-                <li>Open: ${roundNumber(stockDetails['02. open'])}</li>
-                <li>High: ${roundNumber(stockDetails['03. high'])}</li>
-                <li>Low: ${roundNumber(stockDetails['04. low'])}</li>
-              </ul>
-            </div>
-            <div className="w-1/2 h-full">
-              <ul className="text-white h-full">
-                <li>
-                  Latest Trading Day:{' '}
-                  {displayDate(stockDetails['07. latest trading day'])}
-                </li>
-                <li>
-                  Previous Close: $
-                  {roundNumber(stockDetails['08. previous close'])}
-                </li>
-                <li>Volume: {stockDetails['06. volume']}</li>
-                <li>Change Percent: {stockDetails['10. change percent']}</li>
-              </ul>
+              <p>High</p>
+              <p>${roundNumber(stockDetails['03. high'])}</p>
+
+              <p>Low</p>
+              <p>${roundNumber(stockDetails['04. low'])}</p>
+
+              <p>Volume</p>
+              <p>{stockDetails['06. volume']}</p>
             </div>
           </div>
         </div>
-        <form onSubmit={handleAddStockSubmit} className="mb-6">
+        <form onSubmit={handleAddStockSubmit} className="mb-6 mx-4">
           <label>
             <select
               value={selectedWatchlist}
@@ -147,6 +138,7 @@ const StockDetailPage = ({ user, setUser }) => {
               }}
               className="px-2 py-1"
             >
+              <option value="" disabled="disabled"></option>
               {watchlists &&
                 watchlists?.map((watchlist) => (
                   <option value={watchlist._id} key={watchlist._id}>
@@ -163,10 +155,10 @@ const StockDetailPage = ({ user, setUser }) => {
           </button>
           {success && (
             <div
-              className="bg-green-100 border border-green-400 text-green-700 px-2 py-3 rounded relative"
+              className="bg-green-100 border border-green-400 text-green-700 px-2 py-3 my-4 rounded relative"
               role="alert"
             >
-              Watchlist has been updated
+              Watchlist has been updated!
               <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
                 <svg
                   className="fill-current h-6 w-6 text-green-500"
@@ -183,7 +175,7 @@ const StockDetailPage = ({ user, setUser }) => {
           )}
           {error && !!('stock' in error) && (
             <div
-              className="bg-red-100 border border-red-400 text-red-700 px-2 py-3 rounded relative"
+              className="bg-red-100 border border-red-400 text-red-700 px-2 py-3 rounded relative my-4"
               role="alert"
             >
               {error.stock}
