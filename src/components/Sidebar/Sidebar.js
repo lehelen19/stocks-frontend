@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {
-  getWatchlists,
-  createWatchlist,
-  deleteWatchlist,
-  updateWatchlistName,
+    getWatchlists,
+    createWatchlist,
+    deleteWatchlist,
+    updateWatchlistName,
 } from '../../utilities/watchlists-service';
 import { logOut } from '../../utilities/users-service';
 import { Link } from 'react-router-dom';
@@ -17,26 +17,26 @@ function Sidebar({ user, setUser }) {
     //   RENDER ERROR
     const [error, setError] = useState('');
 
-  const fetchWatchlists = async () => {
-    try {
-      const foundWatchlists = await getWatchlists();
-      setWatchlists(foundWatchlists);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const fetchWatchlists = async () => {
+        try {
+            const foundWatchlists = await getWatchlists();
+            setWatchlists(foundWatchlists);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-  const handleLogout = () => {
-    logOut();
-    setUser(null);
-  };
+    const handleLogout = () => {
+        logOut();
+        setUser(null);
+    };
 
-  useEffect(() => {
-    fetchWatchlists();
-  }, []);
-  const handleClick = () => {
-    setShowInput(!showInput);
-  };
+    useEffect(() => {
+        fetchWatchlists();
+    }, []);
+    const handleClick = () => {
+        setShowInput(!showInput);
+    };
 
     const handleChange = (e) => {
         setWatchlistName(e.target.value);
@@ -46,24 +46,24 @@ function Sidebar({ user, setUser }) {
         setEditWatchlistName(e.target.value);
     };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await createWatchlist(watchlistName);
-      setWatchlistName('');
-      fetchWatchlists();
-    } catch (err) {
-      setError('New watchlist creation failed - try again');
-    }
-  };
-  const handleDeleteWatchlist = async (_id) => {
-    try {
-      await deleteWatchlist(_id);
-      fetchWatchlists();
-    } catch (error) {
-      setError('Failed to delete watchlist.');
-    }
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await createWatchlist(watchlistName);
+            setWatchlistName('');
+            fetchWatchlists();
+        } catch (err) {
+            setError('New watchlist creation failed - try again');
+        }
+    };
+    const handleDeleteWatchlist = async (_id) => {
+        try {
+            await deleteWatchlist(_id);
+            fetchWatchlists();
+        } catch (error) {
+            setError('Failed to delete watchlist.');
+        }
+    };
 
     const handleStartEditing = async (id, newName) => {
         setEditingId(id);
@@ -96,11 +96,11 @@ function Sidebar({ user, setUser }) {
                         placeholder="New watchlist name..."
                     />
                     <button
-                    className='text-white px-1 ml-2 rounded-md bg-teal-600'
+                        className='text-white px-1 ml-2 rounded-md bg-teal-600'
                     >Submit</button>
                 </form>
             )}
-            <nav>
+            <nav >
                 <h2 className="text-white font-semibold text-xl my-2">Watchlists</h2>
                 {watchlists &&
                     watchlists.map((watchlist) => {
@@ -151,12 +151,13 @@ function Sidebar({ user, setUser }) {
                             </div>
                         );
                     })}
+                <div >
+                    <button
+                        className="text-white h-full my-1 hover:underline bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
+                        onClick={handleLogout}>Log Out</button>
+                </div>
             </nav>
-            <div >
-                <button
-                    className="text-white hover:underline my-1 bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
-                    onClick={handleLogout}>Log Out</button>
-            </div>
+
 
         </div>
     );
