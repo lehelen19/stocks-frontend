@@ -169,7 +169,7 @@ function Sidebar({ user, setUser }) {
       )}
       <nav>
         <h2 className="text-white font-semibold text-xl my-2">Watchlists</h2>
-
+        {watchlists ? loaded() : loading()}
         <div>
           <button
             className="text-white h-full my-1 hover:underline bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
