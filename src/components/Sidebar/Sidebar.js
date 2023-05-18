@@ -78,7 +78,7 @@ function Sidebar({ user, setUser }) {
         }
     };
     return (
-        <div className="bg-teal-500 p-6 h-full">
+        <div className="bg-teal-500 p-6 h-screen flex flex-col justify-between ">
             <Link to="/" className="text-white font-bold text-2xl capitalize">
                 Welcome, {user.username}!
             </Link>
@@ -100,63 +100,65 @@ function Sidebar({ user, setUser }) {
                     >Submit</button>
                 </form>
             )}
-            <nav >
-                <h2 className="text-white font-semibold text-xl my-2">Watchlists</h2>
-                {watchlists &&
-                    watchlists.map((watchlist) => {
-                        const { name, _id } = watchlist;
-                        return (
-                            <div key={_id}>
-                                {editingId === _id ? (
-                                    <form
-                                        onSubmit={(e) => {
-                                            e.preventDefault();
-                                            handleFinishEditing(_id, editWatchlistName);
-                                        }}
-                                    >
-                                        <input
-                                            className='rounded-md'
-                                            type="text"
-                                            value={editWatchlistName}
-                                            onChange={handleEditChange}
-                                            autoFocus
-                                        />
-                                        <button
-                                            className='rounded-md px-2 py-1  ml-2 bg-teal-600 hover:bg-teal-700 text-white'
-                                            type="submit">Save</button>
-                                    </form>
-                                ) : (
-                                    <div className="flex flex-col h-full justify-between">
-                                        <div className="bg-teal-600 rounded-lg p-2 mt-5 lg:mt-5 text-gray-100 cursor-pointer">
-                                            <Link
-                                                to={`/watchlists/${_id}`}
-                                                className="block lg:inline-block text-teal-200 hover:text-white mr-4"
-                                            >
-                                                <p>{name}</p>
-                                            </Link>
-                                            <div className="flex justify-end">
-                                                <button
-                                                    className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
-                                                    onClick={() => handleStartEditing(_id)}>Edit</button>
-                                                <button
-                                                    className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
-                                                    onClick={() => handleDeleteWatchlist(_id)}
+            <div className='flex-grow' >
+                <nav >
+                    <h2 className="text-white font-semibold text-xl my-2">Watchlists</h2>
+                    {watchlists &&
+                        watchlists.map((watchlist) => {
+                            const { name, _id } = watchlist;
+                            return (
+                                <div key={_id}>
+                                    {editingId === _id ? (
+                                        <form
+                                            onSubmit={(e) => {
+                                                e.preventDefault();
+                                                handleFinishEditing(_id, editWatchlistName);
+                                            }}
+                                        >
+                                            <input
+                                                className='rounded-md'
+                                                type="text"
+                                                value={editWatchlistName}
+                                                onChange={handleEditChange}
+                                                autoFocus
+                                            />
+                                            <button
+                                                className='rounded-md px-2 py-1  ml-2 bg-teal-600 hover:bg-teal-700 text-white'
+                                                type="submit">Save</button>
+                                        </form>
+                                    ) : (
+                                        <div className="flex flex-col h-full justify-between">
+                                            <div className="bg-teal-600 rounded-lg p-2 mt-5 lg:mt-5 text-gray-100 cursor-pointer">
+                                                <Link
+                                                    to={`/watchlists/${_id}`}
+                                                    className="block lg:inline-block text-teal-200 hover:text-white mr-4"
                                                 >
-                                                    X
-                                                </button>
+                                                    <p>{name}</p>
+                                                </Link>
+                                                <div className="flex justify-end">
+                                                    <button
+                                                        className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
+                                                        onClick={() => handleStartEditing(_id)}>Edit</button>
+                                                    <button
+                                                        className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
+                                                        onClick={() => handleDeleteWatchlist(_id)}
+                                                    >
+                                                        X
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })}
-                <div >
-                    <button
-                        className="text-white h-full my-1 hover:underline bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
-                        onClick={handleLogout}>Log Out</button>
-                </div>
-            </nav>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    <div className='relative h-10 w-32'>
+                        <button
+                            className="text-white absolute bottom-0 left-0 h-full my-1 hover:underline bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
+                            onClick={handleLogout}>Log Out</button>
+                    </div>
+                </nav>
+            </div>
 
 
         </div>
