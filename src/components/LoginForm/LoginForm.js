@@ -29,6 +29,7 @@ export default function LoginForm({ setUser }) {
 
   return (
     <div>
+      <h1 className="text-3xl font-bold text-center">PortfolioPal</h1>
       <div className="flex justify-center">
         <form
           autoComplete="off"
