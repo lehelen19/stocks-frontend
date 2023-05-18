@@ -24,7 +24,6 @@ function App() {
     <main className="App">
       {user ? (
         <>
-          {/* <NavBar user={user} setUser={setUser} /> */}
           <Routes>
             <Route
               path="/"
