@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { getWatchlistDetails } from '../../utilities/watchlists-service';
@@ -56,7 +56,7 @@ const WatchlistDetailPage = ({
 
   return (
     <div className="flex h-screen">
-      <div className="h-full" >
+      <div className="h-full">
         <Sidebar user={user} setUser={setUser} />
       </div>
       <div className="flex-1 bg-teal-50">
@@ -80,8 +80,13 @@ const WatchlistDetailPage = ({
                 if (stocksDetails[stock]) {
                   return (
                     <article key={stock}>
-                      <h3 className="uppercase">
-                        {stocksDetails[stock]['01. symbol']}
+                      <h3>
+                        <Link
+                          className="uppercase cursor-pointer text-teal-500 hover:underline hover:italic"
+                          to={`/stocks/${stock}`}
+                        >
+                          {stocksDetails[stock]['01. symbol']}
+                        </Link>
                       </h3>
                       <li>
                         Price: ${roundNumber(stocksDetails[stock]['05. price'])}
