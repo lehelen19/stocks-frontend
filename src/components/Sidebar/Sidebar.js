@@ -65,36 +65,39 @@ function Sidebar({ user, setUser }) {
         }
     };
 
-  const handleStartEditing = async (id, newName) => {
-    setEditingId(id);
-  };
-  const handleFinishEditing = async (id, newName) => {
-    try {
-      await updateWatchlistName(id, newName);
-      setEditingId(null);
-      fetchWatchlists();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  return (
-    <div className="bg-teal-500 p-6 h-full">
-      <Link to="/" className="text-white font-bold text-2xl capitalize">
-        Welcome, {user.username}!
-      </Link>
+    const handleStartEditing = async (id, newName) => {
+        setEditingId(id);
+    };
+    const handleFinishEditing = async (id, newName) => {
+        try {
+            await updateWatchlistName(id, newName);
+            setEditingId(null);
+            fetchWatchlists();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    return (
+        <div className="bg-teal-500 p-6 h-full">
+            <Link to="/" className="text-white font-bold text-2xl capitalize">
+                Welcome, {user.username}!
+            </Link>
 
-            <button onClick={handleClick} className="text-white hover:underline my-1">
+            <button onClick={handleClick} className="bg-emerald-500 px-1 rounded-md flex mt-4 text-gray-100 hover:underline my-1 text-gray-500">
                 Create new watchlist
             </button>
             {showInput && (
                 <form onSubmit={handleSubmit}>
                     <input
+                        className='rounded-md'
                         type="text"
                         value={watchlistName}
                         onChange={handleChange}
                         placeholder="New watchlist name..."
                     />
-                    <button>Submit</button>
+                    <button
+                    className='text-white px-1 ml-2 rounded-md bg-teal-600'
+                    >Submit</button>
                 </form>
             )}
             <nav>
@@ -112,12 +115,15 @@ function Sidebar({ user, setUser }) {
                                         }}
                                     >
                                         <input
+                                            className='rounded-md'
                                             type="text"
                                             value={editWatchlistName}
                                             onChange={handleEditChange}
                                             autoFocus
                                         />
-                                        <button type="submit">Save</button>
+                                        <button
+                                            className='rounded-md px-2 py-1  ml-2 bg-teal-600 hover:bg-teal-700 text-white'
+                                            type="submit">Save</button>
                                     </form>
                                 ) : (
                                     <div className="flex flex-col h-full justify-between">
@@ -129,11 +135,11 @@ function Sidebar({ user, setUser }) {
                                                 <p>{name}</p>
                                             </Link>
                                             <div className="flex justify-end">
-                                                <button 
-                                                className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                                                onClick={() => handleStartEditing(_id)}>Edit</button>
                                                 <button
-                                                    className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                                                    className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
+                                                    onClick={() => handleStartEditing(_id)}>Edit</button>
+                                                <button
+                                                    className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
                                                     onClick={() => handleDeleteWatchlist(_id)}
                                                 >
                                                     X
