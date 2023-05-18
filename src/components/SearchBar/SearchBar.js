@@ -1,4 +1,16 @@
-const SearchBar = ({ handleSubmit, search, setSearch, error }) => {
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const SearchBar = () => {
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearch('');
+    navigate(`/stocks/${search}`);
+  };
+
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
