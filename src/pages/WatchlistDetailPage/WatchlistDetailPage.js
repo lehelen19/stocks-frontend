@@ -1,17 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { getWatchlistDetails } from '../../utilities/watchlists-service';
 import { getStockDetail } from '../../utilities/stocks-service';
 
-const WatchlistDetailPage = ({
-  user,
-  search,
-  setSearch,
-  handleSubmit,
-  setUser,
-}) => {
+const WatchlistDetailPage = ({ user, setUser }) => {
   const [watchlistDetails, setWatchlistDetails] = useState(null);
   const [stocksDetails, setStocksDetails] = useState(null);
   const [error, setError] = useState('');
@@ -56,15 +50,11 @@ const WatchlistDetailPage = ({
 
   return (
     <div className="flex h-screen">
-      <div className="h-full" >
+      <div className="h-full">
         <Sidebar user={user} setUser={setUser} />
       </div>
       <div className="flex-1 bg-teal-50">
-        <SearchBar
-          search={search}
-          setSearch={setSearch}
-          handleSubmit={handleSubmit}
-        />
+        <SearchBar />
         <div>
           {error && (
             <h2 className="text-red-600 text-center m-4 text-xl">{error}</h2>
@@ -80,8 +70,13 @@ const WatchlistDetailPage = ({
                 if (stocksDetails[stock]) {
                   return (
                     <article key={stock}>
-                      <h3 className="uppercase">
-                        {stocksDetails[stock]['01. symbol']}
+                      <h3>
+                        <Link
+                          className="uppercase cursor-pointer text-teal-500 hover:underline hover:italic"
+                          to={`/stocks/${stock}`}
+                        >
+                          {stocksDetails[stock]['01. symbol']}
+                        </Link>
                       </h3>
                       <li>
                         Price: ${roundNumber(stocksDetails[stock]['05. price'])}
