@@ -156,22 +156,20 @@ function Sidebar({ user, setUser }) {
 
       <button
         onClick={handleClick}
-        className="block tracking-wide my-4 text-white-100 underline text-white hover:text-gray-500 hover:bg-gray-100 hover:italic focus:outline-none focus:ring-2 focus:ring-inset"
+        className="block tracking-wide mt-4 mb-2 text-white-100 underline text-white hover:text-gray-500 hover:bg-gray-100 hover:italic"
       >
         Create new watchlist
       </button>
       {showInput && (
         <form onSubmit={handleSubmit}>
           <input
-            className="rounded-md"
+            className="bg-white border-none w-full text-gray-700 p-1 leading-tight focus:outline-none rounded-sm"
             type="text"
             value={watchlistName}
             onChange={handleChange}
             placeholder="New watchlist name..."
           />
-          <button className="text-white px-1 ml-2 rounded-md bg-teal-600">
-            Submit
-          </button>
+          <button className="hidden">Submit</button>
         </form>
       )}
       <nav>
