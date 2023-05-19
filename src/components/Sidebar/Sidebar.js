@@ -14,15 +14,14 @@ function Sidebar({ user, setUser, imgSrc }) {
   const [editWatchlistName, setEditWatchlistName] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [showInput, setShowInput] = useState(false);
-  //   RENDER ERROR
   const [error, setError] = useState('');
 
   const fetchWatchlists = async () => {
     try {
       const foundWatchlists = await getWatchlists();
       setWatchlists(foundWatchlists);
-    } catch (error) {
-      setError(error);
+    } catch {
+      setError('Failed to fetch your watchlists.');
     }
   };
 
@@ -62,7 +61,7 @@ function Sidebar({ user, setUser, imgSrc }) {
     try {
       await deleteWatchlist(_id);
       fetchWatchlists();
-    } catch (error) {
+    } catch {
       setError('Failed to delete watchlist.');
     }
   };
@@ -80,8 +79,8 @@ function Sidebar({ user, setUser, imgSrc }) {
       await updateWatchlistName(id, newName);
       setEditingId(null);
       fetchWatchlists();
-    } catch (error) {
-      console.log(error);
+    } catch {
+      setError('Failed to update watchlist name');
     }
   };
 
@@ -160,6 +159,9 @@ function Sidebar({ user, setUser, imgSrc }) {
       <h2 className="text-white font-bold text-2xl capitalize text-center">
         Welcome, {user.username}!
       </h2>
+      {error && (
+        <p className="mt-2 text-red-500 bg-teal-50 rounded-sm p-0.5">{error}</p>
+      )}
 
       <button
         onClick={handleClick}
