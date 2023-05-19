@@ -12,6 +12,8 @@ const StockDetailPage = ({ user, setUser }) => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
+  const imgSrc = '/img/astronautup.avif';
+
   const fetchWatchlists = async () => {
     try {
       const foundWatchlists = await getWatchlists();
@@ -202,7 +204,7 @@ const StockDetailPage = ({ user, setUser }) => {
   return (
     <div className="flex h-screen">
       <div className="h-full">
-        <Sidebar user={user} setUser={setUser} />
+        <Sidebar user={user} setUser={setUser} imgSrc={imgSrc} />
       </div>
       <section className="flex-1 bg-teal-50 h-full">
         <SearchBar />

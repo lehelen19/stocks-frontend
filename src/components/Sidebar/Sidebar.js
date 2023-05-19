@@ -8,7 +8,7 @@ import {
 import { logOut } from '../../utilities/users-service';
 import { Link } from 'react-router-dom';
 
-function Sidebar({ user, setUser }) {
+function Sidebar({ user, setUser, imgSrc }) {
   const [watchlists, setWatchlists] = useState(null);
   const [watchlistName, setWatchlistName] = useState('');
   const [editWatchlistName, setEditWatchlistName] = useState('');
@@ -152,8 +152,8 @@ function Sidebar({ user, setUser }) {
         <div className="image-container w-20 h-20">
           <img
             className="object-contain w-full h-full rounded-md"
-            src={process.env.PUBLIC_URL + '/img/pink.avif'}
-            alt="A cartoon astronaut sitting on a planet with a laptop."
+            src={process.env.PUBLIC_URL + imgSrc}
+            alt="A dynamically selected cartoon astronaut."
           />
         </div>
       </div>

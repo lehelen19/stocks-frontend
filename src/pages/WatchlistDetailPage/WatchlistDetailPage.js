@@ -10,6 +10,8 @@ const WatchlistDetailPage = ({ user, setUser }) => {
   const [stocksDetails, setStocksDetails] = useState(null);
   const [error, setError] = useState('');
 
+  const imgSrc = '/img/watch.avif';
+
   let { id } = useParams();
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const WatchlistDetailPage = ({ user, setUser }) => {
   return (
     <div className="flex h-screen">
       <div className="h-full">
-        <Sidebar user={user} setUser={setUser} />
+        <Sidebar user={user} setUser={setUser} imgSrc={imgSrc} />
       </div>
       <div className="flex-1 bg-teal-50">
         <SearchBar />
