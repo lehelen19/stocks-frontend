@@ -104,16 +104,13 @@ function Sidebar({ user, setUser }) {
                 }}
               >
                 <input
-                  className="rounded-md"
+                  className="bg-white border-none w-full text-gray-700 p-1 leading-tight focus:outline-none rounded-sm"
                   type="text"
                   value={editWatchlistName}
                   onChange={handleEditChange}
                   autoFocus
                 />
-                <button
-                  className="rounded-md px-2 py-1  ml-2 bg-teal-600 hover:bg-teal-700 text-white"
-                  type="submit"
-                >
+                <button className="hidden" type="submit">
                   Save
                 </button>
               </form>
