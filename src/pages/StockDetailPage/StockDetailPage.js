@@ -19,7 +19,7 @@ const StockDetailPage = ({ user, setUser }) => {
       const foundWatchlists = await getWatchlists();
       setWatchlists(foundWatchlists);
     } catch {
-      setError({ watchlist: 'Watchlist could not be found.' });
+      setError({ detail: 'Watchlist could not be found.' });
     }
   };
 
@@ -35,6 +35,10 @@ const StockDetailPage = ({ user, setUser }) => {
     const fetchStockDetails = async () => {
       try {
         const foundStock = await getStockDetail(symbol);
+        if ('Note' in foundStock) {
+          setError({ detail: "You've been rate limited by the API. :(" });
+          return;
+        }
         setStockDetails(foundStock['Global Quote']);
         setSuccess(false);
       } catch {
@@ -208,6 +212,14 @@ const StockDetailPage = ({ user, setUser }) => {
       </div>
       <section className="flex-1 bg-teal-50 h-full">
         <SearchBar />
+        {error && !('stock' in error) && (
+          <p
+            role="alert"
+            className="text-center text-red-500 italic font-sm mt-5"
+          >
+            {error.detail}
+          </p>
+        )}
         <div>{stockDetails ? loaded() : loading()}</div>
       </section>
     </div>
