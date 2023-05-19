@@ -66,7 +66,11 @@ const WatchlistDetailPage = ({ user, setUser }) => {
     return (Math.round((Number(str) + Number.EPSILON) * 100) / 100).toFixed(2);
   };
 
-  const loading = () => <p>Loading stocks...</p>;
+  const loading = () => (
+    <p className="m-5 tracking-wide italic">
+      Loading stocks... or maybe you haven't added any?
+    </p>
+  );
 
   const loaded = () => {
     return (

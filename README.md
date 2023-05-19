@@ -21,7 +21,10 @@ Do you have trouble keeping track of the stocks you want to monitor? **Portfolio
 
 ## Screenshots
 
-![Screenshot of the home page.](public/img/home.png)
+![Screenshot of the login form.](public/img/login.png)
+![Screenshot of the signup form.](public/img/signup.png)
+![Screenshot of a detail page of the ADBE stock.](public/img/stockdetailpage.png)
+![Screenshot of an example watchlist detail page.](public/img/watchlistdetailpage.png)
 
 ## Technologies Used
 
@@ -37,6 +40,7 @@ Do you have trouble keeping track of the stocks you want to monitor? **Portfolio
 
 ## Next Steps
 
+- Add ability to delete stocks from watchlist
 - Add a populated search bar feature
 - Display graphs based on stock price over time
 - Implement paper trading
