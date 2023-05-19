@@ -39,7 +39,7 @@ export default function LoginForm({ setUser }) {
           <h1 className="block uppercase tracking-wide font-bold">
             Welcome back
           </h1>
-          <hr className="m-2" />
+          <hr className="m-2 border-pink-200" />
           <label
             htmlFor="username"
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -72,7 +72,7 @@ export default function LoginForm({ setUser }) {
           />
           <button
             type="submit"
-            className="block uppercase tracking-wide text-gray-700 m-5 border-2 p-1"
+            className="block uppercase tracking-wide bg-pink-100 text-gray-700 m-5 border-2 rounded-md border-pink-200 p-1 hover:bg-pink-200 hover:text-stone-800"
           >
             LOG IN
           </button>
