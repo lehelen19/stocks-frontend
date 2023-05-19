@@ -1,2 +1,2 @@
 /* /index.html 200
-/api/* https://portfoliopal-backend.herokuapp.com/ 200
+/api/* https://portfoliopal-backend.herokuapp.com/:splat 200
