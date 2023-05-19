@@ -66,7 +66,12 @@ function Sidebar({ user, setUser }) {
   };
 
   const handleStartEditing = async (id, newName) => {
-    setEditingId(id);
+    const watchlist = watchlists.find((watchlist) => watchlist._id === id)
+    if(watchlist) {
+        setEditWatchlistName(watchlist.name);
+        setEditingId(id);
+
+    }
   };
   const handleFinishEditing = async (id, newName) => {
     try {
