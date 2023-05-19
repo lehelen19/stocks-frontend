@@ -10,16 +10,16 @@ export default function AuthPage({ setUser }) {
         {userStatus ? (
           <>
             <div className="left mt-4">
-              <div className="image-container ml-4 w-16 h-16 mb-2">
+              <div className="image-container ml-4 w-16 h-16">
                 <img
                   className="object-contain w-full h-full mt-2 rounded-md"
                   src={process.env.PUBLIC_URL + '/img/pink.avif'}
-                  alt=""
+                  alt="A cartoon astronaut sitting on a planet with a laptop."
                 />
               </div>
 
               <button
-                className="underline hover:italic ml-4"
+                className="underline hover:italic ml-4 text-sm"
                 onClick={() => setUserStatus(!userStatus)}
               >
                 Don't have an account?
@@ -30,16 +30,16 @@ export default function AuthPage({ setUser }) {
           </>
         ) : (
           <>
-            <div className="left">
-              <div className="image-container w-16 h-16">
+            <div className="left mt-4">
+              <div className="image-container ml-4 w-16 h-16">
                 <img
-                  className="object-contain w-full h-full ml-9 mt-2 rounded-md"
+                  className="object-contain w-full h-full mt-2 rounded-md"
                   src={process.env.PUBLIC_URL + '/img/dab.avif'}
-                  alt=""
+                  alt="A cartoon astronaut dabbing."
                 />
               </div>
               <button
-                className="hover:underline italic"
+                className="underline hover:italic ml-4 text-sm"
                 onClick={() => setUserStatus(!userStatus)}
               >
                 Already have an account?
