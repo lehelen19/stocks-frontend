@@ -19,7 +19,7 @@ export default function AuthPage({ setUser }) {
               </div>
 
               <button
-                className="underline hover:italic ml-2"
+                className="underline hover:italic ml-4"
                 onClick={() => setUserStatus(!userStatus)}
               >
                 Don't have an account?
