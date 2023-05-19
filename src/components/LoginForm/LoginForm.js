@@ -78,7 +78,13 @@ export default function LoginForm({ setUser }) {
           </button>
         </form>
       </div>
-      <p className="error-message">&nbsp;{error}</p>
+
+      <p
+        role="alert"
+        className="text-center text-red-500 italic font-sm -mt-10"
+      >
+        {error}
+      </p>
     </div>
   );
 }
