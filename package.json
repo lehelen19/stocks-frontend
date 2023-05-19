@@ -35,7 +35,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://portfoliopal-backend.herokuapp.com/",
   "devDependencies": {
     "tailwindcss": "^3.3.2"
   }
