@@ -34,6 +34,7 @@ function Sidebar({ user, setUser }) {
   useEffect(() => {
     fetchWatchlists();
   }, []);
+
   const handleClick = () => {
     setShowInput(!showInput);
   };
@@ -56,6 +57,7 @@ function Sidebar({ user, setUser }) {
       setError('New watchlist creation failed - try again');
     }
   };
+
   const handleDeleteWatchlist = async (_id) => {
     try {
       await deleteWatchlist(_id);
@@ -66,13 +68,13 @@ function Sidebar({ user, setUser }) {
   };
 
   const handleStartEditing = async (id, newName) => {
-    const watchlist = watchlists.find((watchlist) => watchlist._id === id)
-    if(watchlist) {
-        setEditWatchlistName(watchlist.name);
-        setEditingId(id);
-
+    const watchlist = watchlists.find((watchlist) => watchlist._id === id);
+    if (watchlist) {
+      setEditWatchlistName(watchlist.name);
+      setEditingId(id);
     }
   };
+
   const handleFinishEditing = async (id, newName) => {
     try {
       await updateWatchlistName(id, newName);
@@ -147,14 +149,14 @@ function Sidebar({ user, setUser }) {
     );
   };
   return (
-    <div className="bg-teal-500 p-6 min-h-screen">
+    <div className="bg-teal-500 py-6 px-8 max-w-64 min-h-screen">
       <Link to="/" className="text-white font-bold text-2xl capitalize">
         Welcome, {user.username}!
       </Link>
 
       <button
         onClick={handleClick}
-        className="bg-teal-400 px-1 rounded-md flex mt-4 text-white-100 hover: my-1 text-white"
+        className="block tracking-wide my-4 text-white-100 underline text-white hover:text-gray-500 hover:bg-gray-100 hover:italic focus:outline-none focus:ring-2 focus:ring-inset"
       >
         Create new watchlist
       </button>
@@ -172,10 +174,10 @@ function Sidebar({ user, setUser }) {
           </button>
         </form>
       )}
-      <nav >
+      <nav>
         <h2 className="text-white font-semibold text-xl my-2">Watchlists</h2>
         {watchlists ? loaded() : loading()}
-        <div className='absolute bottom-5' >
+        <div className="absolute bottom-5">
           <button
             className="text-white bottom-0 hover:underline bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
             onClick={handleLogout}
