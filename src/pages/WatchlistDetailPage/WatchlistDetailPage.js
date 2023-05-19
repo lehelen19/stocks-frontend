@@ -39,6 +39,10 @@ const WatchlistDetailPage = ({ user, setUser }) => {
     const fetchStockDetails = async (symbol) => {
       try {
         const foundStock = await getStockDetail(symbol);
+        if ('Note' in foundStock) {
+          setError("You've been rate limited by the API. :(");
+          return;
+        }
         setStocksDetails((stocksDetails) => ({
           ...stocksDetails,
           [symbol]: foundStock['Global Quote'],
@@ -62,6 +66,67 @@ const WatchlistDetailPage = ({ user, setUser }) => {
     return (Math.round((Number(str) + Number.EPSILON) * 100) / 100).toFixed(2);
   };
 
+  const loading = () => <p>Loading stocks...</p>;
+
+  const loaded = () => {
+    return (
+      <>
+        <h2 className="text-teal-600 text-center m-4 text-xl font-bold tracking-wide block">
+          {!!watchlistDetails && watchlistDetails.name}
+        </h2>
+        <section>
+          {!!watchlistDetails &&
+            !!stocksDetails &&
+            watchlistDetails.stocks.map((stock) => {
+              if (stocksDetails[stock]) {
+                return (
+                  <article
+                    className="flex flex-col border-t border-b border-gray-200 py-2"
+                    key={stock}
+                  >
+                    <div className="grid grid-cols-3 gap-4 text-center">
+                      <h3>
+                        <Link
+                          className="uppercase ml-4 col-span-1 font-semibold cursor-pointer text-teal-600 hover:underline hover:italic"
+                          to={`/stocks/${stock}`}
+                        >
+                          {stocksDetails[stock]['01. symbol']}
+                        </Link>
+                      </h3>
+                      <p className="col-span-1 text-gray-700">
+                        ${roundNumber(stocksDetails[stock]['05. price'])}
+                      </p>
+                      <p className="col-span-1 text-gray-700">
+                        {stocksDetails[stock]['10. change percent'] < 0 ? (
+                          <span className="text-red-600">
+                            -
+                            {roundNumber(
+                              stocksDetails[stock]['10. change percent']
+                            )}
+                            %
+                          </span>
+                        ) : (
+                          <span className="text-green-600">
+                            +
+                            {roundNumber(
+                              stocksDetails[stock]['10. change percent']
+                            )}
+                            %
+                          </span>
+                        )}
+                      </p>
+                    </div>
+                  </article>
+                );
+              } else {
+                return <p key={stock}>{stock.name}</p>;
+              }
+            })}
+        </section>
+      </>
+    );
+  };
+
   return (
     <div className="flex h-screen">
       <div className="h-full">
@@ -73,59 +138,7 @@ const WatchlistDetailPage = ({ user, setUser }) => {
           {error && (
             <h2 className="text-red-600 text-center m-4 text-xl">{error}</h2>
           )}
-
-          <h2 className="text-teal-600 text-center m-4 text-xl font-bold tracking-wide block">
-            {!!watchlistDetails && watchlistDetails.name}
-          </h2>
-          <section>
-            {!!watchlistDetails &&
-              !!stocksDetails &&
-              watchlistDetails.stocks.map((stock) => {
-                if (stocksDetails[stock]) {
-                  return (
-                    <article
-                      className="flex flex-col border-t border-b border-gray-200 py-2"
-                      key={stock}
-                    >
-                      <div className="grid grid-cols-3 gap-4 text-center">
-                        <h3>
-                          <Link
-                            className="uppercase ml-4 col-span-1 font-semibold cursor-pointer text-teal-600 hover:underline hover:italic"
-                            to={`/stocks/${stock}`}
-                          >
-                            {stocksDetails[stock]['01. symbol']}
-                          </Link>
-                        </h3>
-                        <p className="col-span-1 text-gray-700">
-                          ${roundNumber(stocksDetails[stock]['05. price'])}
-                        </p>
-                        <p className="col-span-1 text-gray-700">
-                          {stocksDetails[stock]['10. change percent'] < 0 ? (
-                            <span className="text-red-600">
-                              -
-                              {roundNumber(
-                                stocksDetails[stock]['10. change percent']
-                              )}
-                              %
-                            </span>
-                          ) : (
-                            <span className="text-green-600">
-                              +
-                              {roundNumber(
-                                stocksDetails[stock]['10. change percent']
-                              )}
-                              %
-                            </span>
-                          )}
-                        </p>
-                      </div>
-                    </article>
-                  );
-                } else {
-                  return <p key={stock}>{stock.name}</p>;
-                }
-              })}
-          </section>
+          {watchlistDetails && stocksDetails ? loaded() : loading()}
         </div>
       </div>
     </div>
