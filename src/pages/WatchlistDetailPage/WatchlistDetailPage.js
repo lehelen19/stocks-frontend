@@ -85,7 +85,7 @@ const WatchlistDetailPage = ({ user, setUser }) => {
                       className="flex flex-col border-t border-b border-gray-200 py-2"
                       key={stock}
                     >
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 gap-4 text-center max-w-md">
                         <h3>
                           <Link
                             className="uppercase ml-4 col-span-1 font-semibold cursor-pointer text-teal-600 hover:underline hover:italic"
