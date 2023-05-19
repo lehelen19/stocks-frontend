@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-<h1 align="center"><a href="">Stockopolis</a></h1>
+<h1 align="center"><a href="">Portfolio Pal</a></h1>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -17,7 +17,7 @@
 
 ## Background
 
-Do you have trouble keeping track of the stocks you want to monitor? **Stockopolis** could be your consolidated solution - the ultimate stock tracking companion! With our app, you can build personalized watchlists to track your most-watched stocks in real time. You can see even more detailed information about the stock on its own detail page. Build your own stockopolis today!
+Do you have trouble keeping track of the stocks you want to monitor? **Portfolio Pal** could be your consolidated solution - the ultimate stock tracking companion! With our app, you can build personalized watchlists to track your most-watched stocks in real time and see more detailed information about each stock on its own detail page.
 
 ## Screenshots
 
