@@ -48,7 +48,7 @@ export default class SignUpForm extends Component {
             <h1 className="block uppercase tracking-wide font-bold">
               Register
             </h1>
-            <hr className="m-2" />
+            <hr className="m-2 border-blue-200" />
             <label
               htmlFor="username"
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -112,7 +112,7 @@ export default class SignUpForm extends Component {
             <button
               type="submit"
               disabled={disabled}
-              className="block uppercase tracking-wide text-gray-700 m-5 border-2 p-1"
+              className="block uppercase tracking-wide bg-blue-100 text-gray-700 m-5 border-2 rounded-md border-blue-200 p-1 hover:bg-blue-200 hover:text-stone-800"
             >
               Sign Up
             </button>
