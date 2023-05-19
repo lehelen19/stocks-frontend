@@ -150,9 +150,9 @@ function Sidebar({ user, setUser }) {
   };
   return (
     <div className="bg-teal-500 py-6 px-8 max-w-64 min-h-screen">
-      <Link to="/" className="text-white font-bold text-2xl capitalize">
+      <h2 className="text-white font-bold text-2xl capitalize text-center">
         Welcome, {user.username}!
-      </Link>
+      </h2>
 
       <button
         onClick={handleClick}
