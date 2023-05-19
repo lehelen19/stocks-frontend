@@ -118,29 +118,30 @@ function Sidebar({ user, setUser }) {
                 </button>
               </form>
             ) : (
-              <div className="flex flex-col h-full justify-between">
-                <div className="bg-teal-600 rounded-lg p-2 mt-5 lg:mt-5 text-gray-100 cursor-pointer">
+              <div className="flex flex-col h-full justify-between flex-wrap">
+                <div className="flex justify-between my-4 flex-wrap">
                   <Link
                     to={`/watchlists/${_id}`}
-                    className="block lg:inline-block text-teal-200 hover:text-white mr-4"
+                    className="block lg:inline-block text-teal-200 hover:text-white mr-4 tracking-wide"
                   >
                     <p>{name}</p>
                   </Link>
-                  <div className="flex justify-end">
+                  <div className="flex">
                     <button
-                      className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
+                      className="mr-4 rounded-md px-4 py-1 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
                       onClick={() => handleStartEditing(_id)}
                     >
                       Edit
                     </button>
                     <button
-                      className="mr-4 rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
+                      className="rounded-md px-2 text-white text-sm bg-teal-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
                       onClick={() => handleDeleteWatchlist(_id)}
                     >
                       X
                     </button>
                   </div>
                 </div>
+                <hr />
               </div>
             )}
           </div>
@@ -149,7 +150,7 @@ function Sidebar({ user, setUser }) {
     );
   };
   return (
-    <div className="bg-teal-500 py-6 px-8 max-w-64 min-h-screen">
+    <div className="bg-teal-500 py-6 px-8 max-w-sm min-h-screen">
       <h2 className="text-white font-bold text-2xl capitalize text-center">
         Welcome, {user.username}!
       </h2>
@@ -173,11 +174,11 @@ function Sidebar({ user, setUser }) {
         </form>
       )}
       <nav>
-        <h2 className="text-white font-semibold text-xl my-2">Watchlists</h2>
+        <h2 className="text-white font-semibold text-xl mt-5">Watchlists</h2>
         {watchlists ? loaded() : loading()}
         <div className="absolute bottom-5">
           <button
-            className="text-white bottom-0 hover:underline bg-teal-900 hover:bg-teal-800 rounded-md px-4 py-2 "
+            className="text-white bottom-0 hover:underline bg-teal-800 hover:bg-teal-700 rounded-md px-4 py-2"
             onClick={handleLogout}
           >
             Log Out
