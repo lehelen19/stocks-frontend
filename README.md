@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-<h1 align="center"><a href="">Portfolio Pal</a></h1>
+<h1 align="center"><a href="https://main--imaginative-trifle-c078b4.netlify.app/watchlists/646719a06386c91d24021924">Portfolio Pal</a></h1>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -35,7 +35,7 @@ Do you have trouble keeping track of the stocks you want to monitor? **Portfolio
 
 ## Getting Started
 
-- [Website]()
+- [Website](https://main--imaginative-trifle-c078b4.netlify.app/watchlists/646719a06386c91d24021924)
 - [Trello board](https://trello.com/b/vYuPESd7/stonks-planning)
 
 ## Next Steps
