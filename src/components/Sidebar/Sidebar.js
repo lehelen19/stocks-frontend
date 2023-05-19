@@ -22,7 +22,7 @@ function Sidebar({ user, setUser }) {
       const foundWatchlists = await getWatchlists();
       setWatchlists(foundWatchlists);
     } catch (error) {
-      console.log(error);
+      setError(error);
     }
   };
 
@@ -148,6 +148,15 @@ function Sidebar({ user, setUser }) {
   };
   return (
     <div className="bg-teal-500 py-6 px-8 max-w-sm min-h-screen">
+      <div className="flex justify-center mb-4">
+        <div className="image-container w-20 h-20">
+          <img
+            className="object-contain w-full h-full rounded-md"
+            src={process.env.PUBLIC_URL + '/img/pink.avif'}
+            alt="A cartoon astronaut sitting on a planet with a laptop."
+          />
+        </div>
+      </div>
       <h2 className="text-white font-bold text-2xl capitalize text-center">
         Welcome, {user.username}!
       </h2>
